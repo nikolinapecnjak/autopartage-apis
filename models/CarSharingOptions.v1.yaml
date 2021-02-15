@@ -1,0 +1,67 @@
+title: AutopartageOptions
+type: object
+description: ''
+properties:
+  id:
+    type: string
+  airportParkingService:
+    type: boolean
+    description: |
+      If true parking at the airport is included. This option is available only for the Location of type Airport (if isAirport property of location is true).
+  airportParkingServicePrice:
+    type: string
+    example: 100 EUR
+    default: '0'
+    description: |-
+      The price of airport parking service for the selected duration of car sharing. Applicable only if airportParkingService is set to true.
+      This price is added to the totalCarPrice and represented in the totalCarSharingPrice.
+  airportParkingServiceDescription:
+    type: string
+  includeSnowChains:
+    type: boolean
+    description: If true snow chains are included in the service.
+  snowChainsPrice:
+    type: string
+    description: |-
+      The price of snow chains for the selected duration of car sharing.
+      This price is added to the totalCarPrice and represented in the totalCarSharingPrice.
+    example: 100 EUR
+  snowChainsDescription:
+    type: string
+  additionalDriversService:
+    type: boolean
+    description: If true addittionalDrivers service is included in the service. With this service it is possible to add up to 3 drivers.
+  additionalDriversServicePrice:
+    type: string
+    description: |-
+      The price of additional drivers service.
+      This price is added to the totalCarPrice and represented in the totalCarSharingPrice.
+    example: 100 EUR
+  additionalDriversServiceDescription:
+    type: string
+  includeChildSeat:
+    type: boolean
+    description: If true child seat is included in the service. With this service it is possible to add up to 2 child seats.
+  childSeatPrice:
+    type: string
+    description: |-
+      The price of child seat service.
+      This price is added to the totalCarPrice and represented in the totalCarSharingPrice.
+  childSeatDescription:
+    type: string
+  additionalMileage:
+    type: integer
+    description: |-
+      In case when included mileage is not enough in this parameter the wished mileage can be specified.
+      The mileage is measured in kilometers.
+    example: 1000
+    default: 0
+  additionalMileagePrice:
+    type: string
+    example: 50 EUR
+    description: |-
+      The price is calculated for the additional mileage.
+      For examle if included default mileage is 150 km and user requested 200 km, the price will be calculated for 50 km.
+      This price is added to the totalCarPrice and represented in the totalCarSharingPrice.
+  additionalMileageDescription:
+    type: string

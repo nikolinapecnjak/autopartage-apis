@@ -1,0 +1,21 @@
+title: Insurance
+type: object
+properties:
+  id:
+    type: string
+  insuranceType:
+    type: string
+    description: |-
+      Determines the type of insurance selected.
+      If omitted basic insurance is default.
+    example: plus
+    default: basic
+  insuranceDescription:
+    type: string
+    description: Contains all the information about the selected insurance.
+  insuranceTotalPrice:
+    type: string
+    example: 100 EUR
+    description: |-
+      Total price of the selected insurance.
+      This price is added to the totalCarPrice and represented in the totalCarSharingPrice.

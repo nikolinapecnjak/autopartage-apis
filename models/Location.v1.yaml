@@ -1,0 +1,22 @@
+title: Location
+type: object
+properties:
+  id:
+    type: string
+  country:
+    type: string
+  city:
+    type: string
+  zipCode:
+    type: string
+  address:
+    type: string
+  pickupStationName:
+    type: string
+  isAirport:
+    type: boolean
+  distanceFromSelectedLocation:
+    type: string
+  options:
+    $ref: ./AirportLocationOptions.v1.yaml
+description: ''

@@ -1,0 +1,62 @@
+title: AutopartageService
+type: object
+description: 'This model '
+x-examples:
+  example-1:
+    id: string
+    pickupLocation:
+      id: string
+    availableCars:
+      - id: string
+    departureDate:
+      id: string
+    returnDate:
+      id: string
+    returnLocation:
+      id: string
+    options:
+      id: string
+    insurance:
+      id: string
+    totalServicePrice: string
+properties:
+  id:
+    type: string
+    description: |
+      Unique identifier of AutopartageService object
+  pickupLocation:
+    $ref: ./Location.v1.yaml
+  availableCars:
+    type: array
+    uniqueItems: false
+    description: Contains an array of available cars according to the input criteria.
+    items:
+      $ref: ./Car.v1.yaml
+  departureDate:
+    $ref: ./DateTime.v1.yaml
+  returnDate:
+    $ref: ./DateTime.v1.yaml
+  returnLocation:
+    $ref: ./Location.v1.yaml
+  options:
+    $ref: ./AutopartageOptions.v1.yaml
+  insurance:
+    $ref: ./Insurance.v1.yaml
+  totalServicePrice:
+    type: string
+    example: '100 EUR, 150 USD'
+    description: |-
+      Total amount of the autopartage service including car price and all the selected additional services.
+      If not specified in the request default currency is EUR.
+  contractCode:
+    type: string
+    default: 'null'
+    description: Represents the code of autopartage reservation done through another service such as Hotel provider.
+required:
+  - id
+  - pickupLocation
+  - availableCars
+  - departureDate
+  - returnDate
+  - insurance
+  - totalServicePrice

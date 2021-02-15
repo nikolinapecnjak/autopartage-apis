@@ -1,0 +1,17 @@
+title: DateTime
+type: object
+properties:
+  id:
+    type: string
+  date:
+    type: string
+    format: date
+    example: '2017-07-21'
+    pattern: YYYY-MM-DD
+    maxLength: 10
+  time:
+    type: string
+    format: time
+    example: '17:32:28'
+    pattern: HH-MM-SS
+    maxLength: 8

@@ -1,0 +1,61 @@
+title: Car
+type: object
+x-tags:
+  - voiture
+  - car
+properties:
+  id:
+    type: string
+  brand:
+    type: string
+    enum:
+      - BMW
+      - Fiat
+      - Mercedes
+    example: 'BMW, Fiat, Mercedes'
+    description: Car brand
+  carModel:
+    type: string
+    description: Car Model
+    example: 'Fiat 500X, Mercedes A-Class'
+  dailyPrice:
+    type: string
+    example: 150 EUR
+    description: 'Car daily price including basic mileage/fuel and basic Insurance. It does not include additional autopartage options/costs such as Plus/Premium insurance, airportParking, additional car equipement, additional Driver or additional mileage.'
+  totalCarPrice:
+    type: string
+    example: 300 EUR
+    description: 'Total car price for the selected number of days.It does not include any additional autopartage options/costs such as Plus/Premium insurance, airportParking, additional car equipement, additional Driver or additional mileage.'
+  fuelOrBatteryLevel:
+    description: 'Depending on weather the car is electric or not, it represents the amount of available fuel or battery in percentage.'
+    example: 70%
+    type: string
+  numberOfSeats:
+    type: string
+    example: '2, 4, 5, 7'
+    description: Number of seats available  in the car.
+  isAutomatic:
+    type: boolean
+    description: If true car is automatic.
+  'isCabriolet ':
+    type: boolean
+    description: If true car is cabriolet.
+  isElectric:
+    type: boolean
+    description: If true car is electric.
+  isHybrid:
+    type: boolean
+    description: If true car is hybrid.
+  isHybridRechargeable:
+    type: boolean
+    description: If true car is hybrid wit rechargeable battery.
+  carDescription:
+    type: string
+    description: Includes additional information about the car.
+required:
+  - id
+  - carModel
+  - dailyPrice
+  - totalCarPrice
+  - fuelOrBatteryLevel
+  - numberOfSeats
