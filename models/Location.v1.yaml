@@ -1,22 +1,29 @@
 title: Location
 type: object
+description: ''
 properties:
   id:
     type: string
   country:
     type: string
+    description: Full name of the country.
   city:
     type: string
+    description: Full name of the city.
   zipCode:
+    type: integer
+    description: Zip code of the station.
+  fullAddress:
     type: string
-  address:
+    description: Full address name defining the target pickup station or defining the central base for searching the pickup station in the radius.
+  stationName:
     type: string
-  pickupStationName:
-    type: string
+    description: Full name of the station.
   isAirport:
     type: boolean
+    description: If true the selected location is  Airport.
   distanceFromSelectedLocation:
     type: string
+    description: 'If the initialy selected/searched location does not have available cars, among the returned locations there will be all the locations that are nearby the initialy selected one. This parameter defines the distance in kilometers from the initialy chosen location.'
   options:
     $ref: ./AirportLocationOptions.v1.yaml
-description: ''

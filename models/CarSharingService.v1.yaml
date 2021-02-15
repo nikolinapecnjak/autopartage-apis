@@ -1,6 +1,6 @@
 title: AutopartageService
 type: object
-description: 'This model '
+description: ''
 x-examples:
   example-1:
     id: string
@@ -25,7 +25,9 @@ properties:
     description: |
       Unique identifier of AutopartageService object
   pickupLocation:
-    $ref: ./Location.v1.yaml
+    type: array
+    items:
+      $ref: ./Location.v1.yaml
   availableCars:
     type: array
     uniqueItems: false
@@ -37,7 +39,9 @@ properties:
   returnDate:
     $ref: ./DateTime.v1.yaml
   returnLocation:
-    $ref: ./Location.v1.yaml
+    type: array
+    items:
+      $ref: ./Location.v1.yaml
   options:
     $ref: ./AutopartageOptions.v1.yaml
   insurance:
