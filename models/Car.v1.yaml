@@ -6,7 +6,7 @@ x-tags:
 properties:
   id:
     type: string
-  brand:
+  carBrand:
     type: string
     enum:
       - BMW
@@ -18,14 +18,6 @@ properties:
     type: string
     description: Car Model
     example: 'Fiat 500X, Mercedes A-Class'
-  dailyPrice:
-    type: string
-    example: 150 EUR
-    description: 'Car daily price including basic mileage/fuel and basic Insurance. It does not include additional autopartage options/costs such as Plus/Premium insurance, airportParking, additional car equipement, additional Driver or additional mileage.'
-  totalCarPrice:
-    type: string
-    example: 300 EUR
-    description: 'Total car price for the selected number of days.It does not include any additional autopartage options/costs such as Plus/Premium insurance, airportParking, additional car equipement, additional Driver or additional mileage.'
   fuelOrBatteryLevel:
     description: 'Depending on weather the car is electric or not, it represents the amount of available fuel or battery in percentage.'
     example: 70%
@@ -37,12 +29,15 @@ properties:
   isAutomatic:
     type: boolean
     description: If true car is automatic.
-  'isCabriolet ':
+  isCabriolet:
     type: boolean
     description: If true car is cabriolet.
   isElectric:
     type: boolean
     description: If true car is electric.
+  isThermal:
+    type: boolean
+    description: If true car is thermal (bensin or diesel engine).
   isHybrid:
     type: boolean
     description: If true car is hybrid.
@@ -71,10 +66,27 @@ properties:
   encConutrySupport:
     type: string
     description: The country for which the car has the ENC included.
+  kilometersLeft:
+    type: string
+    description: According to the percentage of fuel/battery it defines how much kilometers can be passed before charging/tanking.
+  accesoires:
+    type: string
+    description: Other additional equipement can be specified here.
+  description:
+    type: string
+    description: Useful information about the car usage.
+  carClass:
+    type: string
+    description: |-
+      Determines the class of the car. For example:
+      S - small
+      M - medium
+      L - large
+    example: S
+  platesNumber:
+    type: string
 required:
   - id
   - carModel
-  - dailyPrice
-  - totalCarPrice
   - fuelOrBatteryLevel
   - numberOfSeats

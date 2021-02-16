@@ -1,4 +1,4 @@
-title: AutopartageService
+title: CarSharingService
 type: object
 description: ''
 x-examples:
@@ -34,7 +34,7 @@ properties:
     description: Contains an array of available cars according to the input criteria.
     items:
       $ref: ./Car.v1.yaml
-  departureDate:
+  startDate:
     $ref: ./DateTime.v1.yaml
   returnDate:
     $ref: ./DateTime.v1.yaml
@@ -42,25 +42,46 @@ properties:
     type: array
     items:
       $ref: ./Location.v1.yaml
-  options:
+  additonalServices:
     $ref: ./AutopartageOptions.v1.yaml
   insurance:
     $ref: ./Insurance.v1.yaml
-  totalServicePrice:
+  finalServicePrice:
     type: string
     example: '100 EUR, 150 USD'
     description: |-
-      Total amount of the autopartage service including car price and all the selected additional services.
+      Total amount of the autopartage service including car  price and all the selected additional services if applicable.
+      If selected at booking time, it includes also any additional autopartage options costs such as Plus/Premium insurance, airportParking, additional car equipement, additional Driver or additional mileage.
+      The calculation depends on how the business calculates the pricing
       If not specified in the request default currency is EUR.
+      This is the final price displayed to the customer.
   contractCode:
     type: string
     default: 'null'
     description: Represents the code of autopartage reservation done through another service such as Hotel provider.
+  totalUsageTime:
+    type: string
+    description: |-
+      This field contains the total time of the Autopartage service.
+      Depending on the option selected at booking time, it can be displayed in minutes,hours or days.
+  kilometersPassed:
+    type: string
+    description: |-
+      This field contains the amount of passed kilometers.
+      It can be used together with usageTime to calculate the price.
+  kilometerPrice:
+    type: string
+  hourPrice:
+    type: string
+  minutePrice:
+    type: string
+  dayPrice:
+    type: string
 required:
   - id
   - pickupLocation
   - availableCars
-  - departureDate
+  - startDate
   - returnDate
   - insurance
-  - totalServicePrice
+  - finalServicePrice

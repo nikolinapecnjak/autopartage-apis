@@ -5,29 +5,152 @@ info:
   contact:
     email: nikolinapecnjak@gmail.com
     name: Nikolina Pecnjak
-  description: ''
+  description: This service allows us to search car sharing  services.
 servers:
   - url: 'http://localhost:3000'
     description: Nikolina Pecnjak
 paths:
-  '/users/{userId}':
-    parameters:
-      - schema:
-          type: integer
-        name: userId
-        in: path
-        required: true
-        description: Id of an existing user.
+  /carsharingService:
     get:
-      summary: Get User Info by User ID
-      tags: []
+      tags: [autopartage, carsharing]
+      summary: Get cars available for carsharing according to the requester matching input parameters.
+      description: 'It returns the list of CarsharingService objects administered by the requester and matching the input parameters. The response does not contain all the detailed information of the retrived cars, but just a subset of properties. All the query parameters are case insensitive.'
+      operationId: getCarsharingServices
+      parameters:
+        - name: language
+          in: query
+          description: 'The language in which the content will be displayed, it is selected from the application. '
+          required: false
+          schema:
+            type: string
+          x-example: France
+        - name: currency
+          in: query
+          description: 'The currency in which the prices will be displayed, it is selected from the application. The official ISO 4217 standard which specifies three-letter ("Alpha-3") codes is used.'
+          required: false
+          schema:
+            type: string
+          x-example: EUR
+        - name: userLocation
+          in: query
+          description: Exact coordinates of the user.
+          required: false
+          schema:
+            type: string
+          x-example: France
+        - name: country
+          in: query
+          description: The country where the carsharing service is being searched.
+          required: false
+          schema:
+            type: string
+          x-example: France
+        - name: city
+          in: query
+          description: The city where the carsharing service is being searched.
+          required: false
+          schema:
+            type: string
+          x-example: Nice
+        - name: zipcode
+          in: query
+          description: The zipcode of the city where the carsharing service is being searched.
+          required: false
+          schema:
+            type: string
+          x-example: 6160
+        - name: fullAddress
+          in: query
+          description: The exact address for the wished location of car pickup.
+          required: false
+          schema:
+            type: string
+          x-example: '27 Albert Premier,06160 Antibes'
+        - name: stationName
+          in: query
+          description: The exact address for the wished location of car pickup.
+          required: false
+          schema:
+            type: string
+          x-example: Nice Gare
+        - name: startDate
+          in: query
+          description: 'The start date of the service following  RFC 3339 protocol conventions in the following format: YYYY-MM-DD. If omitted default value is current date at the time of the search. '
+          required: true
+          schema:
+            type: string
+          x-example: '2017-07-21'
+        - name: startDateTime
+          in: query
+          description: 'The start date and time of the service following  RFC 3339 protocol conventions in following format: YYYY-MM-DDTHH:MM:SSZ. If omitted default value is current date-time at the time of the search. '
+          required: true
+          schema:
+            type: string
+          x-example: '2017-07-21T17:32:28Z'
+        - name: carBrand
+          in: query
+          description: This parameter can be used for filtering results depending on the selected car brand.
+          required: false
+          schema:
+            type: string
+          x-example: BMW
+        - name: carClass
+          in: query
+          description: This parameter can be used for filtering results depending on the selected car class.
+          required: false
+          schema:
+            type: boolean
+          x-example: A
+        - name: isAutomatic
+          in: query
+          description: If true only automatic cars will be returned.
+          required: false
+          schema:
+            type: boolean
+        - name: isElectric
+          in: query
+          description: If true only electric cars will be returned.
+          required: false
+          schema:
+            type: boolean
+        - name: isThermal
+          in: query
+          description: If true only the cars with thermal engine will be returned.
+          required: false
+          schema:
+            type: boolean
+        - name: isisHybride
+          in: query
+          description: If true only the hybride cars will be returned.
+          required: false
+          schema:
+            type: boolean
+        - name: isHybridRechargeable
+          in: query
+          description: If true only the hybrid rechargeable cars will be returned.
+          required: false
+          schema:
+            type: boolean
+        - name: numberOfSeats
+          in: query
+          description: If specified only the cars with selected number of seats will be returned.
+          required: false
+          schema:
+            type: integer
+          x-example: 4
+        - name: snowTires
+          in: query
+          description: If true only the the cars with snow tires will be returned.
+          required: false
+          schema:
+            type: boolean
       responses:
         '200':
           description: User Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/'
               examples:
                 Get User Alice Smith:
                   value:
@@ -40,155 +163,5 @@ paths:
                     signUpDate: '2019-08-24'
         '404':
           description: User Not Found
-      operationId: get-users-userId
-      description: Retrieve the information of the user with the matching user ID.
-    patch:
-      summary: Update User Information
-      operationId: patch-users-userId
-      responses:
-        '200':
-          description: User Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                Updated User Rebecca Baker:
-                  value:
-                    id: 13
-                    firstName: Rebecca
-                    lastName: Baker
-                    email: rebecca@gmail.com
-                    dateOfBirth: '1985-10-02'
-                    emailVerified: false
-                    createDate: '2019-08-24'
-        '404':
-          description: User Not Found
-        '409':
-          description: Email Already Taken
-      description: Update the infromation of an existing user.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                  description: 'If a new email is given, the user''s email verified property will be set to false.'
-                dateOfBirth:
-                  type: string
-            examples:
-              Update First Name:
-                value:
-                  firstName: Rebecca
-              Update Email:
-                value:
-                  email: rebecca@gmail.com
-              Update Last Name & Date of Birth:
-                value:
-                  lastName: Baker
-                  dateOfBirth: '1985-10-02'
-        description: Patch user properties to update.
-  /user:
-    post:
-      summary: Create New User
-      operationId: post-user
-      responses:
-        '200':
-          description: User Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                New User Bob Fellow:
-                  value:
-                    id: 12
-                    firstName: Bob
-                    lastName: Fellow
-                    email: bob.fellow@gmail.com
-                    dateOfBirth: '1996-08-24'
-                    emailVerified: false
-                    createDate: '2020-11-18'
-        '400':
-          description: Missing Required Information
-        '409':
-          description: Email Already Taken
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                dateOfBirth:
-                  type: string
-                  format: date
-              required:
-                - firstName
-                - lastName
-                - email
-                - dateOfBirth
-            examples:
-              Create User Bob Fellow:
-                value:
-                  firstName: Bob
-                  lastName: Fellow
-                  email: bob.fellow@gmail.com
-                  dateOfBirth: '1996-08-24'
-        description: Post the necessary fields for the API to create a new user.
-      description: Create a new user.
 components:
-  schemas:
-    User:
-      title: User
-      type: object
-      description: ''
-      x-examples:
-        Alice Smith:
-          id: 142
-          firstName: Alice
-          lastName: Smith
-          email: alice.smith@gmail.com
-          dateOfBirth: '1997-10-31'
-          emailVerified: true
-          signUpDate: '2019-08-24'
-      properties:
-        id:
-          type: integer
-          description: Unique identifier for the given user.
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-          format: email
-        dateOfBirth:
-          type: string
-          format: date
-          example: '1997-10-31'
-        emailVerified:
-          type: boolean
-          description: Set to true if the user's email has been verified.
-        createDate:
-          type: string
-          format: date
-          description: The date that the user was created.
-      required:
-        - id
-        - firstName
-        - lastName
-        - email
-        - emailVerified
-  securitySchemes: {}
+  schemas: null

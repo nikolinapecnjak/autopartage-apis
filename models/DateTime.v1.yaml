@@ -9,9 +9,9 @@ properties:
     example: '2017-07-21'
     pattern: YYYY-MM-DD
     maxLength: 10
-  time:
+  dateTime:
     type: string
-    format: time
-    example: '17:32:28'
+    format: date-time
+    example: '2017-07-21T17:32:28Z'
     pattern: HH-MM-SS
     maxLength: 8

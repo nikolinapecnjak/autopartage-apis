@@ -19,6 +19,9 @@ properties:
   stationName:
     type: string
     description: Full name of the station.
+  description:
+    type: string
+    description: Additional information about the location.
   isAirport:
     type: boolean
     description: If true the selected location is  Airport.
