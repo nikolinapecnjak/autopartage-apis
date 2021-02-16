@@ -52,6 +52,25 @@ properties:
   carDescription:
     type: string
     description: Includes additional information about the car.
+  fuelType:
+    type: string
+  fuelCardIncluded:
+    type: boolean
+  airConditioning:
+    type: boolean
+  gps:
+    type: boolean
+  snowTires:
+    type: boolean
+  enc:
+    type: boolean
+  speedRegulator:
+    type: string
+  halfAutonomyLevel:
+    type: string
+  encConutrySupport:
+    type: string
+    description: The country for which the car has the ENC included.
 required:
   - id
   - carModel
