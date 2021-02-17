@@ -3,10 +3,56 @@ type: object
 x-tags:
   - voiture
   - car
+description: Car being rented for the carsharing service.
+x-examples:
+  example-1:
+    id: string
+    location:
+      id: string
+      country: France
+      city: Nice
+      zipCode: 6100
+      fullAddress: 1er Albert Premier
+      stationName: Gare de Nice-Ville
+      description: train station
+      isAirport: true
+      kmDistanceFromSelectedLocation: 1.5
+      options:
+        id: string
+        flightNumber: string
+        airline: Air France
+        departureCity: NCE
+        pickupTerminal: string
+        byPlaneArrival: true
+      xCoordinate: 43.575847
+      yCoordinate: 7.120708
+    carBrand: BMW
+    carModel: Fiat
+    fuelOrBatteryLevel: 70%
+    numberOfSeats: '4'
+    isAutomatic: true
+    isCabriolet: true
+    isElectric: true
+    isThermal: true
+    isHybrid: true
+    isHybridRechargeable: true
+    description: 'Equiped with climatisation and snow tires. '
+    fuelType: diesel
+    fuelCardIncluded: true
+    airConditioning: true
+    gps: true
+    snowTires: true
+    speedRegulator: true
+    halfAutonomyLevel: true
+    kilometersLeft: 1500
+    carClass: S
+    platesNumber: FW228GZ
+    carYear: 2017
+    kilometersPassed: 50000
 properties:
   id:
     type: string
-  pickupLocation:
+  location:
     $ref: ./Location.v1.yaml
   carBrand:
     type: string
@@ -114,49 +160,3 @@ required:
   - carModel
   - fuelOrBatteryLevel
   - numberOfSeats
-description: Car being rented for the carsharing service.
-x-examples:
-  example-1:
-    id: string
-    pickupLocation:
-      id: string
-      country: France
-      city: Nice
-      zipCode: 6100
-      fullAddress: 1er Albert Premier
-      stationName: Gare de Nice-Ville
-      description: train station
-      isAirport: true
-      kmDistanceFromSelectedLocation: 1.5
-      options:
-        id: string
-        flightNumber: string
-        airline: Air France
-        departureCity: NCE
-        pickupTerminal: string
-        byPlaneArrival: true
-      xCoordinate: 43.575847
-      yCoordinate: 7.120708
-    carBrand: BMW
-    carModel: Fiat
-    fuelOrBatteryLevel: 70%
-    numberOfSeats: '4'
-    isAutomatic: true
-    isCabriolet: true
-    isElectric: true
-    isThermal: true
-    isHybrid: true
-    isHybridRechargeable: true
-    description: 'Equiped with climatisation and snow tires. '
-    fuelType: diesel
-    fuelCardIncluded: true
-    airConditioning: true
-    gps: true
-    snowTires: true
-    speedRegulator: true
-    halfAutonomyLevel: true
-    kilometersLeft: 1500
-    carClass: S
-    platesNumber: FW228GZ
-    carYear: 2017
-    kilometersPassed: 50000

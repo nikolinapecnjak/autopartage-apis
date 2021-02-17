@@ -222,14 +222,14 @@ paths:
                 type: array
                 uniqueItems: false
                 items:
-                  $ref: ../models/CarsharingService.v1.yaml
+                  $ref: '#/components/schemas/CarsharingService'
               examples:
                 example-1:
                   value:
                     - id: string
                       car:
                         id: string
-                        pickupLocation:
+                        location:
                           id: string
                           country: France
                           city: Nice
@@ -247,18 +247,18 @@ paths:
                         numberOfSeats: '4'
                         isAutomatic: true
                         isCabriolet: true
-                        isElectric: false
+                        isElectric: true
                         isThermal: true
-                        isHybrid: false
-                        isHybridRechargeable: false
+                        isHybrid: true
+                        isHybridRechargeable: true
                         description: 'Equiped with climatisation and snow tires. '
                         fuelType: diesel
                         fuelCardIncluded: true
                         airConditioning: true
                         gps: true
                         snowTires: true
-                        speedRegulator: false
-                        halfAutonomyLevel: false
+                        speedRegulator: true
+                        halfAutonomyLevel: true
                         kilometersLeft: 1500
                         carClass: S
                         platesNumber: FW228GZ
@@ -270,27 +270,8 @@ paths:
                         dateTime: '2017-07-21T17:32:28Z'
                       returnDate:
                         id: string
-                        date: '2017-07-22'
-                        dateTime: '2017-07-22T17:32:28Z'
-                      returnLocation:
-                        id: string
-                        country: France
-                        city: Nice
-                        zipCode: 6100
-                        fullAddress: 1er Albert Premier
-                        stationName: Gare de Nice-Ville
-                        description: train station
-                        isAirport: true
-                        kmDistanceFromSelectedLocation: 1.5
-                        options:
-                          id: string
-                          flightNumber: string
-                          airline: Air France
-                          departureCity: NCE
-                          pickupTerminal: string
-                          byPlaneArrival: true
-                        xCoordinate: 43.575847
-                        yCoordinate: 7.120708
+                        date: '2017-07-21'
+                        dateTime: '2017-07-21T17:32:28Z'
                       pricing:
                         id: string
                         totalServicePrice: '100'
@@ -387,3 +368,371 @@ components:
           type: string
           format: url
           description: A link to a web page or file with further documentation to help the API consumer resolve this error
+    Location:
+      type: object
+      description: Location representing the start or end location for the rental and return of the car.
+      x-examples:
+        example-1:
+          id: string
+          country: France
+          city: Nice
+          zipCode: 6100
+          fullAddress: 1er Albert Premier
+          stationName: Gare de Nice-Ville
+          description: train station
+          isAirport: true
+          kmDistanceFromSelectedLocation: 1.5
+          xCoordinate: 43.575847
+          yCoordinate: 7.120708
+      properties:
+        id:
+          type: string
+        country:
+          type: string
+          description: Full name of the country.
+          example: France
+        city:
+          type: string
+          description: Full name of the city.
+          example: Nice
+        zipCode:
+          type: integer
+          description: Zip code of the station.
+          example: 6100
+        fullAddress:
+          type: string
+          description: Full address name defining the target pickup station or defining the central base for searching the pickup station in the radius.
+          example: 1er Albert Premier
+        stationName:
+          type: string
+          description: Full name of the station.
+          example: Gare de Nice-Ville
+        description:
+          type: string
+          description: Additional information about the location.
+          example: train station
+        isAirport:
+          type: boolean
+          description: If true the selected location is  Airport.
+        kmDistanceFromSelectedLocation:
+          type: number
+          description: 'If the initialy selected/searched location does not have available cars, among the returned locations there will be all the locations that are nearby the initialy selected one. This parameter defines the distance in kilometers from the initialy chosen location.'
+          format: float
+          example: 1.5
+        xCoordinate:
+          type: number
+          format: double
+          description: x coordinate of the Location
+          example: 43.575847
+        yCoordinate:
+          type: number
+          format: double
+          description: y coordinate of the Location
+          example: 7.120708
+    DateTime:
+      title: DateTime
+      type: object
+      description: Representing the date and the time.
+      x-examples:
+        example-1:
+          id: string
+          date: '2017-07-21'
+          dateTime: '2017-07-21T17:32:28Z'
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+          format: date
+          example: '2017-07-21'
+        dateTime:
+          type: string
+          format: date-time
+          example: '2017-07-21T17:32:28Z'
+    Car:
+      type: object
+      x-tags:
+        - voiture
+        - car
+      description: Car being rented for the carsharing service.
+      x-examples:
+        example-1:
+          id: string
+          location:
+            id: string
+            country: France
+            city: Nice
+            zipCode: 6100
+            fullAddress: 1er Albert Premier
+            stationName: Gare de Nice-Ville
+            description: train station
+            isAirport: true
+            kmDistanceFromSelectedLocation: 1.5
+            xCoordinate: 43.575847
+            yCoordinate: 7.120708
+          carBrand: BMW
+          carModel: Fiat
+          fuelOrBatteryLevel: 70%
+          numberOfSeats: '4'
+          isAutomatic: true
+          isCabriolet: true
+          isElectric: true
+          isThermal: true
+          isHybrid: true
+          isHybridRechargeable: true
+          description: 'Equiped with climatisation and snow tires. '
+          fuelType: diesel
+          fuelCardIncluded: true
+          airConditioning: true
+          gps: true
+          snowTires: true
+          speedRegulator: true
+          halfAutonomyLevel: true
+          kilometersLeft: 1500
+          carClass: S
+          platesNumber: FW228GZ
+          carYear: 2017
+          kilometersPassed: 50000
+      properties:
+        id:
+          type: string
+        location:
+          $ref: '#/components/schemas/Location'
+        carBrand:
+          type: string
+          example: BMW
+          description: Car brand
+        carModel:
+          type: string
+          description: Car Model
+          example: Fiat
+        fuelOrBatteryLevel:
+          description: 'Depending on weather the car is electric or not, it represents the amount of available fuel or battery in percentage.'
+          example: 70%
+          type: string
+        numberOfSeats:
+          type: string
+          description: Number of seats available  in the car.
+          enum:
+            - '1'
+            - '2'
+            - '3'
+            - '4'
+            - '5'
+            - '6'
+            - '7'
+          example: '4'
+        isAutomatic:
+          type: boolean
+          description: If true car is automatic.
+        isCabriolet:
+          type: boolean
+          description: If true car is cabriolet.
+        isElectric:
+          type: boolean
+          description: If true car is electric.
+        isThermal:
+          type: boolean
+          description: If true car is thermal (bensin or diesel engine).
+        isHybrid:
+          type: boolean
+          description: If true car is hybrid.
+        isHybridRechargeable:
+          type: boolean
+          description: If true car is hybrid wit rechargeable battery.
+        description:
+          type: string
+          description: |-
+            Includes additional information about the car.
+            Other additional equipement can be specified here.
+          example: 'Equiped with climatisation and snow tires. '
+        fuelType:
+          type: string
+          enum:
+            - diesel
+            - petrol
+          example: diesel
+          description: Determines the type of fuel in case if car has a thermal engine. Not applicable if car does not have a thermal engine.
+        fuelCardIncluded:
+          type: boolean
+          description: If true the company fuel card is available in the car for the purpose of tanking at the partner gas stations.
+        airConditioning:
+          type: boolean
+          description: If true the car has air conditioning.
+        gps:
+          type: boolean
+          description: If true the car has gps.
+        snowTires:
+          type: boolean
+          description: If true the car has snow tires.
+        speedRegulator:
+          description: If true the car has the speed regulator.
+          type: boolean
+        halfAutonomyLevel:
+          description: If true the car has half autonomy level.
+          type: boolean
+        kilometersLeft:
+          type: integer
+          description: According to the percentage of fuel/battery it defines how much kilometers can be passed before charging/tanking.
+          example: 1500
+        carClass:
+          type: string
+          description: |-
+            Determines the class of the car. For example:
+            S - small
+            M - medium
+            L - large
+          example: S
+          enum:
+            - S
+            - M
+            - L
+        platesNumber:
+          type: string
+          example: FW228GZ
+          description: The car plates number.
+        carYear:
+          type: integer
+          description: The year of car production.
+          example: 2017
+        kilometersPassed:
+          type: integer
+          description: The number of kilometers the car has passed by now.
+          example: 50000
+      required:
+        - id
+        - carModel
+        - fuelOrBatteryLevel
+        - numberOfSeats
+    Pricing:
+      title: Pricing
+      type: object
+      x-examples:
+        example-1:
+          id: string
+          totalServicePrice: '100'
+          contractCode: '12345'
+          kilometerPrice: '1'
+          hourPrice: '10'
+          minutePrice: '0.50'
+          dayPrice: '100'
+          currency: EUR
+      properties:
+        id:
+          type: string
+        totalServicePrice:
+          type: string
+          example: '100'
+          description: |-
+            Total amount of the autopartage service including car  price and all the selected additional services if applicable.
+            If selected at booking time, it includes also any additional autopartage options costs such as Plus/Premium insurance, airportParking, additional car equipement, additional Driver or additional mileage.
+            The calculation depends on how the business calculates the pricing
+            If not specified in the request default currency is EUR.
+            This is the final price displayed to the customer.
+        contractCode:
+          type: string
+          default: 'null'
+          description: Represents the code of autopartage reservation done through another service such as a Hotel provider. In case if there is a valid contract code the total price is zero since the service was previously payed.
+          example: '12345'
+        kilometerPrice:
+          type: string
+          description: |-
+            The price per kilometer. Applicable if corresponding package is chosen.
+            The currency depends on the chosen currency in the accoutn of the user.
+          example: '1'
+        hourPrice:
+          type: string
+          description: |-
+            The price per hour. Applicable if corresponding package is chosen.
+            The currency depends on the chosen currency in the accoutn of the user.
+          example: '10'
+        minutePrice:
+          type: string
+          description: |-
+            The price per minute. Applicable if corresponding package is chosen.
+            The currency depends on the chosen currency in the accoutn of the user.
+          example: '0.50'
+        dayPrice:
+          type: string
+          description: |-
+            The price per day. Applicable if corresponding package is chosen.
+            The currency depends on the chosen currency in the accoutn of the user.
+          example: '100'
+        currency:
+          type: string
+          description: 'The currency in which the prices will be displayed, it is selected from the application. The official ISO 4217 standard which specifies three-letter ("Alpha-3") codes is used.'
+          example: EUR
+    CarsharingService:
+      title: CarSharingService
+      type: object
+      description: ''
+      x-examples:
+        example-1:
+          id: string
+          car:
+            id: string
+            location:
+              id: string
+              country: France
+              city: Nice
+              zipCode: 6100
+              fullAddress: 1er Albert Premier
+              stationName: Gare de Nice-Ville
+              description: train station
+              isAirport: true
+              kmDistanceFromSelectedLocation: 1.5
+              xCoordinate: 43.575847
+              yCoordinate: 7.120708
+            carBrand: BMW
+            carModel: Fiat
+            fuelOrBatteryLevel: 70%
+            numberOfSeats: '4'
+            isAutomatic: true
+            isCabriolet: true
+            isElectric: true
+            isThermal: true
+            isHybrid: true
+            isHybridRechargeable: true
+            description: 'Equiped with climatisation and snow tires. '
+            fuelType: diesel
+            fuelCardIncluded: true
+            airConditioning: true
+            gps: true
+            snowTires: true
+            speedRegulator: true
+            halfAutonomyLevel: true
+            kilometersLeft: 1500
+            carClass: S
+            platesNumber: FW228GZ
+            carYear: 2017
+            kilometersPassed: 50000
+          startDate:
+            id: string
+            date: '2017-07-21'
+            dateTime: '2017-07-21T17:32:28Z'
+          returnDate:
+            id: string
+            date: '2017-07-21'
+            dateTime: '2017-07-21T17:32:28Z'
+          pricing:
+            id: string
+            totalServicePrice: '100'
+            contractCode: '12345'
+            kilometerPrice: '1'
+            hourPrice: '10'
+            minutePrice: '0.50'
+            dayPrice: '100'
+            currency: EUR
+      properties:
+        id:
+          type: string
+          description: |
+            Unique identifier of AutopartageService object
+        car:
+          $ref: '#/components/schemas/Car'
+        startDate:
+          $ref: '#/components/schemas/DateTime'
+        returnDate:
+          $ref: '#/components/schemas/DateTime'
+        pricing:
+          $ref: '#/components/schemas/Pricing'
