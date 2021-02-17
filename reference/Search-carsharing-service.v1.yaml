@@ -25,25 +25,19 @@ paths:
           required: false
           schema:
             type: string
-            example: hrv
+            example: eng
+            default: eng
         - name: currency
           in: query
           description: 'The name of the currency in which the prices will be displayed, it is selected from the application. The official ISO 4217 standard which specifies three-letter ("Alpha-3") codes is used.'
-          required: false
           schema:
             type: string
             example: EUR
+            default: EUR
           x-example: EUR
-        - name: userCurrentLocation
-          in: query
-          description: If set to true the exact user location will be used to find the closest available cars.
-          required: false
-          schema:
-            type: boolean
         - name: country
           in: query
           description: The full name of the country where the carsharing service is being searched.
-          required: false
           schema:
             type: string
             example: France
@@ -56,14 +50,6 @@ paths:
             type: string
             example: Nice
           x-example: Nice
-        - name: zipcode
-          in: query
-          description: The zipcode of the city where the carsharing service is being searched.
-          required: false
-          schema:
-            type: string
-            example: '06100'
-          x-example: 6160
         - name: fullAddress
           in: query
           description: The full address for the wished location of car pickup.
@@ -83,7 +69,6 @@ paths:
         - name: startDate
           in: query
           description: 'The start date of the service following  RFC 3339 protocol conventions in the following format: YYYY-MM-DD. If omitted default value is current date at the time of the search. '
-          required: true
           schema:
             type: string
             example: '2021-07-21'
@@ -92,7 +77,6 @@ paths:
         - name: startDateTime
           in: query
           description: 'The start date and time of the service following  RFC 3339 protocol conventions in following format: YYYY-MM-DDTHH:MM:SSZ. If omitted default value is current date-time at the time of the search. '
-          required: true
           schema:
             type: string
             format: date-time
@@ -165,12 +149,6 @@ paths:
           required: false
           schema:
             type: boolean
-        - name: bookNow
-          schema:
-            type: boolean
-          in: query
-          description: If true the startDateTime is set to the current local time which applies in the country that is selected for the search..
-          required: false
         - name: contractCode
           schema:
             type: string
@@ -213,6 +191,23 @@ paths:
           in: query
           description: 'List of fields to be returned. If omitted, all      available fields are returned. If specified, only the requested fields are returned.'
           style: pipeDelimited
+        - schema:
+            type: boolean
+          in: query
+          name: isManual
+          description: If true only cars with manual transmission will be returned.
+        - schema:
+            type: string
+            example: '06160'
+          in: query
+          name: zipCode
+          description: Zipcode of the town where car is searched
+        - schema:
+            type: integer
+            example: '50'
+          in: query
+          name: radius
+          description: Radius from current location in which the cars will be searched. Unit is km.
       responses:
         '200':
           description: Available cars successfully retrieved.
@@ -456,24 +451,13 @@ components:
             description: train station
             isAirport: true
             kmDistanceFromSelectedLocation: 1.5
-            options:
-              id: string
-              flightNumber: string
-              airline: Air France
-              departureCity: NCE
-              pickupTerminal: string
-              byPlaneArrival: true
             xCoordinate: 43.575847
             yCoordinate: 7.120708
           carBrand: BMW
           carModel: Fiat
           fuelOrBatteryLevel: 70%
           numberOfSeats: '4'
-          isAutomatic: true
           isCabriolet: true
-          isElectric: true
-          isThermal: true
-          isHybrid: true
           isHybridRechargeable: true
           description: 'Equiped with climatisation and snow tires. '
           fuelType: diesel
@@ -488,6 +472,12 @@ components:
           platesNumber: FW228GZ
           carYear: 2017
           kilometersPassed: 50000
+          kilometerPrice: '1'
+          hourPrice: '10'
+          minutePrice: '0.50'
+          dayPrice: '100'
+          transmission: manual
+          energy: thermal
       properties:
         id:
           type: string
@@ -517,21 +507,9 @@ components:
             - '6'
             - '7'
           example: '4'
-        isAutomatic:
-          type: boolean
-          description: If true car is automatic.
         isCabriolet:
           type: boolean
           description: If true car is cabriolet.
-        isElectric:
-          type: boolean
-          description: If true car is electric.
-        isThermal:
-          type: boolean
-          description: If true car is thermal (bensin or diesel engine).
-        isHybrid:
-          type: boolean
-          description: If true car is hybrid.
         isHybridRechargeable:
           type: boolean
           description: If true car is hybrid wit rechargeable battery.
@@ -619,6 +597,22 @@ components:
             The price per day. Applicable if corresponding package is chosen.
             The currency depends on the chosen currency in the accoutn of the user.
           example: '100'
+        transmission:
+          type: string
+          description: The type of transmission in the car.
+          enum:
+            - automatic
+            - manual
+          example: manual
+        energy:
+          type: string
+          description: The type of energy in the car.
+          enum:
+            - thermal
+            - electric
+            - hybrid
+            - hybridRechargeable
+          example: thermal
       required:
         - id
         - location
