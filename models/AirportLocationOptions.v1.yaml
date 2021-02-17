@@ -25,3 +25,11 @@ properties:
   byPlaneArrival:
     type: boolean
     description: Determines if the user is arriving by plan to pick up the car for carsharing.In case if true additional properties can be set up in order to determine the terminal where the car will be waiting for the user.
+x-examples:
+  example-1:
+    id: string
+    flightNumber: string
+    airline: Air France
+    departureCity: NCE
+    pickupTerminal: string
+    byPlaneArrival: true

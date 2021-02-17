@@ -1,5 +1,11 @@
 title: DateTime
 type: object
+description: Representing the date and the time.
+x-examples:
+  example-1:
+    id: string
+    date: '2021-07-21'
+    dateTime: '2021-07-21T17:32:28Z'
 properties:
   id:
     type: string
@@ -7,12 +13,7 @@ properties:
     type: string
     format: date
     example: '2017-07-21'
-    pattern: YYYY-MM-DD
-    maxLength: 10
   dateTime:
     type: string
     format: date-time
     example: '2017-07-21T17:32:28Z'
-    pattern: HH-MM-SS
-    maxLength: 8
-description: Representing the date and the time.

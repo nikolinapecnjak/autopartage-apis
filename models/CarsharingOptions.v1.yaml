@@ -65,3 +65,21 @@ properties:
       This price is added to the totalCarPrice and represented in the totalCarSharingPrice.
   additionalMileageDescription:
     type: string
+x-examples:
+  example-1:
+    id: string
+    airportParkingService: true
+    airportParkingServicePrice: 100 EUR
+    airportParkingServiceDescription: string
+    includeSnowChains: true
+    snowChainsPrice: 100 EUR
+    snowChainsDescription: string
+    additionalDriversService: true
+    additionalDriversServicePrice: 100 EUR
+    additionalDriversServiceDescription: string
+    includeChildSeat: true
+    childSeatPrice: string
+    childSeatDescription: string
+    additionalMileage: 1000
+    additionalMileagePrice: 50 EUR
+    additionalMileageDescription: string

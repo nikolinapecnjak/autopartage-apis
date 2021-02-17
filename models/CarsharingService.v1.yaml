@@ -76,3 +76,108 @@ properties:
       - perHour
       - daily
     example: daily
+x-examples:
+  example-1:
+    id: string
+    selectedCar:
+      id: string
+      pickupLocation:
+        id: string
+        country: string
+        city: string
+        zipCode: 0
+        fullAddress: string
+        stationName: string
+        description: string
+        isAirport: true
+        distanceFromSelectedLocation: string
+        options:
+          id: string
+          flightNumber: string
+          airline: Air France
+          departureCity: NCE
+          pickupTerminal: string
+          byPlaneArrival: true
+        xCoordinate: 0
+        yCoordinate: 0
+      carBrand: BMW
+      carModel: Fiat
+      fuelOrBatteryLevel: 70%
+      numberOfSeats: '4'
+      isAutomatic: true
+      isCabriolet: true
+      isElectric: true
+      isThermal: true
+      isHybrid: true
+      isHybridRechargeable: true
+      description: 'Equiped with climatisation and snow tires. '
+      fuelType: diesel
+      fuelCardIncluded: true
+      airConditioning: true
+      gps: true
+      snowTires: true
+      speedRegulator: true
+      halfAutonomyLevel: true
+      kilometersLeft: 1500
+      carClass: S
+      platesNumber: FW228GZ
+      carYear: 2017
+      kilometersPassed: 50000
+    startDate:
+      id: string
+      date: '2021-07-21'
+      dateTime: '2021-07-21T17:32:28Z'
+    returnDate:
+      id: string
+      date: '2021-07-21'
+      dateTime: '2021-07-21T17:32:28Z'
+    returnLocation:
+      id: string
+      country: string
+      city: string
+      zipCode: 0
+      fullAddress: string
+      stationName: string
+      description: string
+      isAirport: true
+      distanceFromSelectedLocation: string
+      options:
+        id: string
+        flightNumber: string
+        airline: Air France
+        departureCity: NCE
+        pickupTerminal: string
+        byPlaneArrival: true
+      xCoordinate: 0
+      yCoordinate: 0
+    additonalServices:
+      id: string
+      airportParkingService: true
+      airportParkingServicePrice: 100 EUR
+      airportParkingServiceDescription: string
+      includeSnowChains: true
+      snowChainsPrice: 100 EUR
+      snowChainsDescription: string
+      additionalDriversService: true
+      additionalDriversServicePrice: 100 EUR
+      additionalDriversServiceDescription: string
+      includeChildSeat: true
+      childSeatPrice: string
+      childSeatDescription: string
+      additionalMileage: 1000
+      additionalMileagePrice: 50 EUR
+      additionalMileageDescription: string
+    insurance:
+      id: string
+      insuranceType: plus
+      insuranceDescription: string
+      insuranceTotalPrice: 100 EUR
+    finalServicePrice: 100 EUR
+    contractCode: '12345'
+    totalUsageTime: 2 days
+    kilometersPassed: '550'
+    kilometerPrice: 1 EUR
+    hourPrice: 10 EUR
+    minutePrice: 0.5 EUR
+    dayPrice: string
+    package: daily

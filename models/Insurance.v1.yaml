@@ -20,3 +20,9 @@ properties:
       Total price of the selected insurance.
       This price is added to the totalCarPrice and represented in the totalCarSharingPrice.
 description: Insurance which can be included for the car in the carsharing service.
+x-examples:
+  example-1:
+    id: string
+    insuranceType: plus
+    insuranceDescription: string
+    insuranceTotalPrice: 100 EUR

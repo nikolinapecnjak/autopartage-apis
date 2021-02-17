@@ -21,31 +21,34 @@ paths:
       parameters:
         - name: language
           in: query
-          description: 'The language in which the content will be displayed, it is selected from the application. '
+          description: 'The language in which the content will be displayed, it is selected from the application. ISO 639-2 Code is used.'
           required: false
           schema:
             type: string
+            example: hrv
           x-example: France
         - name: currency
           in: query
-          description: 'The currency in which the prices will be displayed, it is selected from the application. The official ISO 4217 standard which specifies three-letter ("Alpha-3") codes is used.'
+          description: 'The name of the currency in which the prices will be displayed, it is selected from the application. The official ISO 4217 standard which specifies three-letter ("Alpha-3") codes is used.'
           required: false
           schema:
             type: string
+            example: EUR
           x-example: EUR
-        - name: userLocation
+        - name: userCurrentLocation
           in: query
-          description: Exact coordinates of the user.
+          description: If set to true the exact user location will be used to find the closest available cars.
           required: false
           schema:
-            type: string
+            type: boolean
           x-example: France
         - name: country
           in: query
-          description: The country where the carsharing service is being searched.
+          description: The full name of the country where the carsharing service is being searched.
           required: false
           schema:
             type: string
+            example: France
           x-example: France
         - name: city
           in: query
@@ -53,6 +56,7 @@ paths:
           required: false
           schema:
             type: string
+            example: Nice
           x-example: Nice
         - name: zipcode
           in: query
@@ -60,20 +64,23 @@ paths:
           required: false
           schema:
             type: string
+            example: '06100 '
           x-example: 6160
         - name: fullAddress
           in: query
-          description: The exact address for the wished location of car pickup.
+          description: The full address for the wished location of car pickup.
           required: false
           schema:
             type: string
+            example: 1er Albert Premier
           x-example: '27 Albert Premier,06160 Antibes'
         - name: stationName
           in: query
-          description: The exact address for the wished location of car pickup.
+          description: 'The exact location name for the wished location of car pickup. It can be for example airport name, parking name or station name.'
           required: false
           schema:
             type: string
+            example: Gare de Nice-Ville
           x-example: Nice Gare
         - name: startDate
           in: query
@@ -81,6 +88,8 @@ paths:
           required: true
           schema:
             type: string
+            example: '2021-07-21'
+            format: date
           x-example: '2017-07-21'
         - name: startDateTime
           in: query
@@ -88,6 +97,7 @@ paths:
           required: true
           schema:
             type: string
+            format: date-time
           x-example: '2017-07-21T17:32:28Z'
         - name: carBrand
           in: query
@@ -95,13 +105,15 @@ paths:
           required: false
           schema:
             type: string
+            example: BMW
           x-example: BMW
         - name: carClass
           in: query
-          description: This parameter can be used for filtering results depending on the selected car class.
+          description: This parameter can be used for filtering results depending on the selected car class. Car classes should be listed in enum field.
           required: false
           schema:
-            type: boolean
+            type: string
+            example: A
           x-example: A
         - name: isAutomatic
           in: query
@@ -139,6 +151,15 @@ paths:
           required: false
           schema:
             type: integer
+            enum:
+              - 1
+              - 2
+              - 3
+              - 4
+              - 5
+              - 6
+              - 7
+            example: 4
           x-example: 4
         - name: snowTires
           in: query
@@ -146,6 +167,45 @@ paths:
           required: false
           schema:
             type: boolean
+        - schema:
+            type: boolean
+          in: query
+          name: bookNow
+          description: If true the startDateTime is set to the current local time which applies in the country that is selected for the search..
+        - schema:
+            type: string
+            example: 123FGH453
+          in: query
+          name: contractCode
+          description: Represents the code of autopartage reservation done through another service such as a Hotel provider.
+        - schema:
+            type: number
+            format: double
+            example: 43.575847
+          in: query
+          name: userXCoordinate
+          description: Applicable only if userCurrentLocation parameter is true. Represents the X coordinate of current user location.
+        - schema:
+            type: number
+            format: double
+            example: 7.120708
+          in: query
+          name: userYCoordinate
+          description: Applicable only if userCurrentLocation parameter is true. Represents the Y coordinate of current user location.
+        - schema:
+            type: string
+            example: '2021-07-22'
+            format: date
+          in: query
+          name: endDate
+          description: 'The end date of the service following  RFC 3339 protocol conventions in the following format: YYYY-MM-DD.'
+        - schema:
+            type: string
+            format: date-time
+            example: '2021-07-22T17:32:28Z'
+          in: query
+          name: endDateTime
+          description: 'The end date and time of the service following  RFC 3339 protocol conventions in following format: YYYY-MM-DDTHH:MM:SSZ.'
       responses:
         '200':
           description: Successful operation.
@@ -157,11 +217,13 @@ paths:
                 items:
                   $ref: ../models/CarsharingService.v1.yaml
               examples:
-                example-2:
+                example-1:
                   value:
                     - id: string
-                      pickupLocation:
-                        - id: string
+                      selectedCar:
+                        id: string
+                        pickupLocation:
+                          id: string
                           country: string
                           city: string
                           zipCode: 0
@@ -172,63 +234,59 @@ paths:
                           distanceFromSelectedLocation: string
                           options:
                             id: string
-                            byPlaneArrival: true
                             flightNumber: string
                             airline: Air France
                             departureCity: NCE
                             pickupTerminal: string
-                      availableCars:
-                        - id: string
-                          carBrand: BMW
-                          carModel: 'Fiat 500X, Mercedes A-Class'
-                          fuelOrBatteryLevel: 70%
-                          numberOfSeats: '2, 4, 5, 7'
-                          isAutomatic: true
-                          isCabriolet: true
-                          isElectric: true
-                          isThermal: true
-                          isHybrid: true
-                          isHybridRechargeable: true
-                          carDescription: string
-                          fuelType: string
-                          fuelCardIncluded: true
-                          airConditioning: true
-                          gps: true
-                          snowTires: true
-                          enc: true
-                          speedRegulator: string
-                          halfAutonomyLevel: string
-                          encConutrySupport: string
-                          kilometersLeft: string
-                          accesoires: string
-                          description: string
-                          carClass: S
-                          platesNumber: string
+                            byPlaneArrival: true
+                        carBrand: BMW
+                        carModel: Fiat
+                        fuelOrBatteryLevel: 70%
+                        numberOfSeats: '4'
+                        isAutomatic: true
+                        isCabriolet: true
+                        isElectric: true
+                        isThermal: true
+                        isHybrid: true
+                        isHybridRechargeable: true
+                        description: 'Equiped with climatisation and snow tires. '
+                        fuelType: diesel
+                        fuelCardIncluded: true
+                        airConditioning: true
+                        gps: true
+                        snowTires: true
+                        speedRegulator: true
+                        halfAutonomyLevel: true
+                        kilometersLeft: 1500
+                        carClass: S
+                        platesNumber: FW228GZ
+                        carYear: 2017
+                        kilometersPassed: 50000
                       startDate:
                         id: string
-                        date: '2017-07-21'
-                        dateTime: '2017-07-21T17:32:28Z'
+                        date: '2021-07-21'
+                        dateTime: '2021-07-21T17:32:28Z'
                       returnDate:
                         id: string
                         date: '2017-07-21'
                         dateTime: '2017-07-21T17:32:28Z'
                       returnLocation:
-                        - id: string
-                          country: string
-                          city: string
-                          zipCode: 0
-                          fullAddress: string
-                          stationName: string
-                          description: string
-                          isAirport: true
-                          distanceFromSelectedLocation: string
-                          options:
-                            id: string
-                            byPlaneArrival: true
-                            flightNumber: string
-                            airline: Air France
-                            departureCity: NCE
-                            pickupTerminal: string
+                        id: string
+                        country: string
+                        city: string
+                        zipCode: 0
+                        fullAddress: string
+                        stationName: string
+                        description: string
+                        isAirport: true
+                        distanceFromSelectedLocation: string
+                        options:
+                          id: string
+                          flightNumber: string
+                          airline: Air France
+                          departureCity: NCE
+                          pickupTerminal: string
+                          byPlaneArrival: true
                       additonalServices:
                         id: string
                         airportParkingService: true
@@ -252,13 +310,16 @@ paths:
                         insuranceDescription: string
                         insuranceTotalPrice: 100 EUR
                       finalServicePrice: 100 EUR
-                      contractCode: 'null'
-                      totalUsageTime: string
-                      kilometersPassed: string
-                      kilometerPrice: string
-                      hourPrice: string
-                      minutePrice: string
+                      contractCode: '12345'
+                      totalUsageTime: 2 days
+                      kilometersPassed: '550'
+                      kilometerPrice: 1 EUR
+                      hourPrice: 10 EUR
+                      minutePrice: 0.5 EUR
                       dayPrice: string
+                      package: daily
+        '201':
+          description: Created
         '400':
           description: Bad Request
           content:

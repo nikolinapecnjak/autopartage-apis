@@ -1,6 +1,26 @@
 title: Location
 type: object
 description: Location representing the start or end location for the rental and return of the car.
+x-examples:
+  example-1:
+    id: string
+    country: string
+    city: string
+    zipCode: 0
+    fullAddress: string
+    stationName: string
+    description: string
+    isAirport: true
+    kmDistanceFromSelectedLocation: 1.5
+    options:
+      id: string
+      flightNumber: string
+      airline: Air France
+      departureCity: NCE
+      pickupTerminal: string
+      byPlaneArrival: true
+    xCoordinate: 0
+    yCoordinate: 0
 properties:
   id:
     type: string
@@ -25,8 +45,18 @@ properties:
   isAirport:
     type: boolean
     description: If true the selected location is  Airport.
-  distanceFromSelectedLocation:
-    type: string
+  kmDistanceFromSelectedLocation:
+    type: number
     description: 'If the initialy selected/searched location does not have available cars, among the returned locations there will be all the locations that are nearby the initialy selected one. This parameter defines the distance in kilometers from the initialy chosen location.'
+    format: float
+    example: 1.5
   options:
     $ref: ./AirportLocationOptions.v1.yaml
+  xCoordinate:
+    type: number
+    format: double
+    description: x coordinate of the Location
+  yCoordinate:
+    type: number
+    format: double
+    description: y coordinate of the Location
