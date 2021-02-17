@@ -49,6 +49,10 @@ x-examples:
     platesNumber: FW228GZ
     carYear: 2017
     kilometersPassed: 50000
+    kilometerPrice: '1'
+    hourPrice: '10'
+    minutePrice: '0.50'
+    dayPrice: '100'
 properties:
   id:
     type: string
@@ -155,6 +159,30 @@ properties:
     type: integer
     description: The number of kilometers the car has passed by now.
     example: 50000
+  kilometerPrice:
+    type: string
+    description: |-
+      The price per kilometer. Applicable if corresponding package is chosen.
+      The currency depends on the chosen currency in the accoutn of the user.
+    example: '1'
+  hourPrice:
+    type: string
+    description: |-
+      The price per hour. Applicable if corresponding package is chosen.
+      The currency depends on the chosen currency in the accoutn of the user.
+    example: '10'
+  minutePrice:
+    type: string
+    description: |-
+      The price per minute. Applicable if corresponding package is chosen.
+      The currency depends on the chosen currency in the accoutn of the user.
+    example: '0.50'
+  dayPrice:
+    type: string
+    description: |-
+      The price per day. Applicable if corresponding package is chosen.
+      The currency depends on the chosen currency in the accoutn of the user.
+    example: '100'
 required:
   - id
   - carModel
