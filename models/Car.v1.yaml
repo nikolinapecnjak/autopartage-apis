@@ -120,14 +120,14 @@ x-examples:
     id: string
     pickupLocation:
       id: string
-      country: string
-      city: string
-      zipCode: 0
-      fullAddress: string
-      stationName: string
-      description: string
+      country: France
+      city: Nice
+      zipCode: 6100
+      fullAddress: 1er Albert Premier
+      stationName: Gare de Nice-Ville
+      description: train station
       isAirport: true
-      distanceFromSelectedLocation: string
+      kmDistanceFromSelectedLocation: 1.5
       options:
         id: string
         flightNumber: string
@@ -135,8 +135,8 @@ x-examples:
         departureCity: NCE
         pickupTerminal: string
         byPlaneArrival: true
-      xCoordinate: 0
-      yCoordinate: 0
+      xCoordinate: 43.575847
+      yCoordinate: 7.120708
     carBrand: BMW
     carModel: Fiat
     fuelOrBatteryLevel: 70%

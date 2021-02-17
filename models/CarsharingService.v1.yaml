@@ -1,96 +1,21 @@
 title: CarSharingService
 type: object
 description: ''
-properties:
-  id:
-    type: string
-    description: |
-      Unique identifier of AutopartageService object
-  selectedCar:
-    $ref: ./Car.v1.yaml
-  startDate:
-    $ref: ./DateTime.v1.yaml
-  returnDate:
-    $ref: ./DateTime.v1.yaml
-  returnLocation:
-    $ref: ./Location.v1.yaml
-  additonalServices:
-    $ref: ./CarsharingOptions.v1.yaml
-  insurance:
-    $ref: ./Insurance.v1.yaml
-  finalServicePrice:
-    type: string
-    example: 100 EUR
-    description: |-
-      Total amount of the autopartage service including car  price and all the selected additional services if applicable.
-      If selected at booking time, it includes also any additional autopartage options costs such as Plus/Premium insurance, airportParking, additional car equipement, additional Driver or additional mileage.
-      The calculation depends on how the business calculates the pricing
-      If not specified in the request default currency is EUR.
-      This is the final price displayed to the customer.
-  contractCode:
-    type: string
-    default: 'null'
-    description: Represents the code of autopartage reservation done through another service such as a Hotel provider.
-    example: '12345'
-  totalUsageTime:
-    type: string
-    description: |-
-      This field contains the total time of the Autopartage service.
-      Depending on the option selected at booking time, it can be displayed in minutes,hours or days.
-    example: 2 days
-  kilometersPassed:
-    type: string
-    description: |-
-      This field contains the amount of passed kilometers.
-      It can be used together with totalUsageTime to calculate the price at the time when client finishes the booking and returns the car.
-      The unit is kilometer.
-    example: '550'
-  kilometerPrice:
-    type: string
-    description: |-
-      The price per kilometer. Applicable if corresponding package is chosen.
-      The currency depends on the chosen currency in the accoutn of the user.
-    example: 1 EUR
-  hourPrice:
-    type: string
-    description: |-
-      The price per hour. Applicable if corresponding package is chosen.
-      The currency depends on the chosen currency in the accoutn of the user.
-    example: 10 EUR
-  minutePrice:
-    type: string
-    description: |-
-      The price per minute. Applicable if corresponding package is chosen.
-      The currency depends on the chosen currency in the accoutn of the user.
-    example: 0.5 EUR
-  dayPrice:
-    description: |-
-      The price per day. Applicable if corresponding package is chosen.
-      The currency depends on the chosen currency in the accoutn of the user.
-    type: string
-  package:
-    type: string
-    description: 'Selected package at booking time. Depending on it, the price calculation is done accordingly (per minute/hour/day). Package prices can be different depending on the car class. If there is no package selected default calculation is by minute.'
-    enum:
-      - perMiute
-      - perHour
-      - daily
-    example: daily
 x-examples:
   example-1:
     id: string
-    selectedCar:
+    car:
       id: string
       pickupLocation:
         id: string
-        country: string
-        city: string
-        zipCode: 0
-        fullAddress: string
-        stationName: string
-        description: string
+        country: France
+        city: Nice
+        zipCode: 6100
+        fullAddress: 1er Albert Premier
+        stationName: Gare de Nice-Ville
+        description: train station
         isAirport: true
-        distanceFromSelectedLocation: string
+        kmDistanceFromSelectedLocation: 1.5
         options:
           id: string
           flightNumber: string
@@ -98,8 +23,8 @@ x-examples:
           departureCity: NCE
           pickupTerminal: string
           byPlaneArrival: true
-        xCoordinate: 0
-        yCoordinate: 0
+        xCoordinate: 43.575847
+        yCoordinate: 7.120708
       carBrand: BMW
       carModel: Fiat
       fuelOrBatteryLevel: 70%
@@ -125,22 +50,22 @@ x-examples:
       kilometersPassed: 50000
     startDate:
       id: string
-      date: '2021-07-21'
-      dateTime: '2021-07-21T17:32:28Z'
+      date: '2017-07-21'
+      dateTime: '2017-07-21T17:32:28Z'
     returnDate:
       id: string
-      date: '2021-07-21'
-      dateTime: '2021-07-21T17:32:28Z'
+      date: '2017-07-21'
+      dateTime: '2017-07-21T17:32:28Z'
     returnLocation:
       id: string
-      country: string
-      city: string
-      zipCode: 0
-      fullAddress: string
-      stationName: string
-      description: string
+      country: France
+      city: Nice
+      zipCode: 6100
+      fullAddress: 1er Albert Premier
+      stationName: Gare de Nice-Ville
+      description: train station
       isAirport: true
-      distanceFromSelectedLocation: string
+      kmDistanceFromSelectedLocation: 1.5
       options:
         id: string
         flightNumber: string
@@ -148,8 +73,8 @@ x-examples:
         departureCity: NCE
         pickupTerminal: string
         byPlaneArrival: true
-      xCoordinate: 0
-      yCoordinate: 0
+      xCoordinate: 43.575847
+      yCoordinate: 7.120708
     additonalServices:
       id: string
       airportParkingService: true
@@ -172,12 +97,36 @@ x-examples:
       insuranceType: plus
       insuranceDescription: string
       insuranceTotalPrice: 100 EUR
-    finalServicePrice: 100 EUR
-    contractCode: '12345'
-    totalUsageTime: 2 days
-    kilometersPassed: '550'
-    kilometerPrice: 1 EUR
-    hourPrice: 10 EUR
-    minutePrice: 0.5 EUR
-    dayPrice: string
-    package: daily
+    pricing:
+      id: string
+      totalServicePrice: '100'
+      contractCode: '12345'
+      kilometersPassed: '550'
+      kilometerPrice: '1'
+      hourPrice: '10'
+      minutePrice: '0.50'
+      dayPrice: '100'
+      package: daily
+      currency: EUR
+      minutesUsage: '20'
+      hoursUsage: '1'
+      daysUsage: '1'
+properties:
+  id:
+    type: string
+    description: |
+      Unique identifier of AutopartageService object
+  car:
+    $ref: ./Car.v1.yaml
+  startDate:
+    $ref: ./DateTime.v1.yaml
+  returnDate:
+    $ref: ./DateTime.v1.yaml
+  returnLocation:
+    $ref: ./Location.v1.yaml
+  additonalServices:
+    $ref: ./CarsharingOptions.v1.yaml
+  insurance:
+    $ref: ./Insurance.v1.yaml
+  pricing:
+    $ref: ./Pricing.v1.yaml

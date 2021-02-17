@@ -4,12 +4,12 @@ description: Location representing the start or end location for the rental and 
 x-examples:
   example-1:
     id: string
-    country: string
-    city: string
-    zipCode: 0
-    fullAddress: string
-    stationName: string
-    description: string
+    country: France
+    city: Nice
+    zipCode: 6100
+    fullAddress: 1er Albert Premier
+    stationName: Gare de Nice-Ville
+    description: train station
     isAirport: true
     kmDistanceFromSelectedLocation: 1.5
     options:
@@ -19,29 +19,35 @@ x-examples:
       departureCity: NCE
       pickupTerminal: string
       byPlaneArrival: true
-    xCoordinate: 0
-    yCoordinate: 0
+    xCoordinate: 43.575847
+    yCoordinate: 7.120708
 properties:
   id:
     type: string
   country:
     type: string
     description: Full name of the country.
+    example: France
   city:
     type: string
     description: Full name of the city.
+    example: Nice
   zipCode:
     type: integer
     description: Zip code of the station.
+    example: 6100
   fullAddress:
     type: string
     description: Full address name defining the target pickup station or defining the central base for searching the pickup station in the radius.
+    example: 1er Albert Premier
   stationName:
     type: string
     description: Full name of the station.
+    example: Gare de Nice-Ville
   description:
     type: string
     description: Additional information about the location.
+    example: train station
   isAirport:
     type: boolean
     description: If true the selected location is  Airport.
@@ -56,7 +62,9 @@ properties:
     type: number
     format: double
     description: x coordinate of the Location
+    example: 43.575847
   yCoordinate:
     type: number
     format: double
     description: y coordinate of the Location
+    example: 7.120708
