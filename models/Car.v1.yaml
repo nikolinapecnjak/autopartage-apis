@@ -6,26 +6,32 @@ x-tags:
 properties:
   id:
     type: string
+  pickupLocation:
+    $ref: ./Location.v1.yaml
   carBrand:
     type: string
-    enum:
-      - BMW
-      - Fiat
-      - Mercedes
-    example: 'BMW, Fiat, Mercedes'
+    example: BMW
     description: Car brand
   carModel:
     type: string
     description: Car Model
-    example: 'Fiat 500X, Mercedes A-Class'
+    example: Fiat
   fuelOrBatteryLevel:
     description: 'Depending on weather the car is electric or not, it represents the amount of available fuel or battery in percentage.'
     example: 70%
     type: string
   numberOfSeats:
     type: string
-    example: '2, 4, 5, 7'
     description: Number of seats available  in the car.
+    enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      - '6'
+      - '7'
+    example: '4'
   isAutomatic:
     type: boolean
     description: If true car is automatic.
@@ -44,37 +50,41 @@ properties:
   isHybridRechargeable:
     type: boolean
     description: If true car is hybrid wit rechargeable battery.
-  carDescription:
-    type: string
-    description: Includes additional information about the car.
-  fuelType:
-    type: string
-  fuelCardIncluded:
-    type: boolean
-  airConditioning:
-    type: boolean
-  gps:
-    type: boolean
-  snowTires:
-    type: boolean
-  enc:
-    type: boolean
-  speedRegulator:
-    type: string
-  halfAutonomyLevel:
-    type: string
-  encConutrySupport:
-    type: string
-    description: The country for which the car has the ENC included.
-  kilometersLeft:
-    type: string
-    description: According to the percentage of fuel/battery it defines how much kilometers can be passed before charging/tanking.
-  accesoires:
-    type: string
-    description: Other additional equipement can be specified here.
   description:
     type: string
-    description: Useful information about the car usage.
+    description: |-
+      Includes additional information about the car.
+      Other additional equipement can be specified here.
+    example: 'Equiped with climatisation and snow tires. '
+  fuelType:
+    type: string
+    enum:
+      - diesel
+      - petrol
+    example: diesel
+    description: Determines the type of fuel in case if car has a thermal engine. Not applicable if car does not have a thermal engine.
+  fuelCardIncluded:
+    type: boolean
+    description: If true the company fuel card is available in the car for the purpose of tanking at the partner gas stations.
+  airConditioning:
+    type: boolean
+    description: If true the car has air conditioning.
+  gps:
+    type: boolean
+    description: If true the car has gps.
+  snowTires:
+    type: boolean
+    description: If true the car has snow tires.
+  speedRegulator:
+    description: If true the car has the speed regulator.
+    type: boolean
+  halfAutonomyLevel:
+    description: If true the car has half autonomy level.
+    type: boolean
+  kilometersLeft:
+    type: integer
+    description: According to the percentage of fuel/battery it defines how much kilometers can be passed before charging/tanking.
+    example: 1500
   carClass:
     type: string
     description: |-
@@ -83,10 +93,25 @@ properties:
       M - medium
       L - large
     example: S
+    enum:
+      - S
+      - M
+      - L
   platesNumber:
     type: string
+    example: FW228GZ
+    description: The car plates number.
+  carYear:
+    type: integer
+    description: The year of car production.
+    example: 2017
+  kilometersPassed:
+    type: integer
+    description: The number of kilometers the car has passed by now.
+    example: 50000
 required:
   - id
   - carModel
   - fuelOrBatteryLevel
   - numberOfSeats
+description: Car being rented for the carsharing service.

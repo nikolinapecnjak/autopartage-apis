@@ -1,6 +1,6 @@
 title: Location
 type: object
-description: ''
+description: Location representing the start or end location for the rental and return of the car.
 properties:
   id:
     type: string

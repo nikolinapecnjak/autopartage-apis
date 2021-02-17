@@ -15,3 +15,4 @@ properties:
     example: '2017-07-21T17:32:28Z'
     pattern: HH-MM-SS
     maxLength: 8
+description: Representing the date and the time.

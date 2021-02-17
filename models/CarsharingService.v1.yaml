@@ -1,54 +1,26 @@
 title: CarSharingService
 type: object
 description: ''
-x-examples:
-  example-1:
-    id: string
-    pickupLocation:
-      id: string
-    availableCars:
-      - id: string
-    departureDate:
-      id: string
-    returnDate:
-      id: string
-    returnLocation:
-      id: string
-    options:
-      id: string
-    insurance:
-      id: string
-    totalServicePrice: string
 properties:
   id:
     type: string
     description: |
       Unique identifier of AutopartageService object
-  pickupLocation:
-    type: array
-    items:
-      $ref: ./Location.v1.yaml
-  availableCars:
-    type: array
-    uniqueItems: false
-    description: Contains an array of available cars according to the input criteria.
-    items:
-      $ref: ./Car.v1.yaml
+  selectedCar:
+    $ref: ./Car.v1.yaml
   startDate:
     $ref: ./DateTime.v1.yaml
   returnDate:
     $ref: ./DateTime.v1.yaml
   returnLocation:
-    type: array
-    items:
-      $ref: ./Location.v1.yaml
+    $ref: ./Location.v1.yaml
   additonalServices:
-    $ref: ./AutopartageOptions.v1.yaml
+    $ref: ./CarsharingOptions.v1.yaml
   insurance:
     $ref: ./Insurance.v1.yaml
   finalServicePrice:
     type: string
-    example: '100 EUR, 150 USD'
+    example: 100 EUR
     description: |-
       Total amount of the autopartage service including car  price and all the selected additional services if applicable.
       If selected at booking time, it includes also any additional autopartage options costs such as Plus/Premium insurance, airportParking, additional car equipement, additional Driver or additional mileage.
@@ -58,30 +30,49 @@ properties:
   contractCode:
     type: string
     default: 'null'
-    description: Represents the code of autopartage reservation done through another service such as Hotel provider.
+    description: Represents the code of autopartage reservation done through another service such as a Hotel provider.
+    example: '12345'
   totalUsageTime:
     type: string
     description: |-
       This field contains the total time of the Autopartage service.
       Depending on the option selected at booking time, it can be displayed in minutes,hours or days.
+    example: 2 days
   kilometersPassed:
     type: string
     description: |-
       This field contains the amount of passed kilometers.
-      It can be used together with usageTime to calculate the price.
+      It can be used together with totalUsageTime to calculate the price at the time when client finishes the booking and returns the car.
+      The unit is kilometer.
+    example: '550'
   kilometerPrice:
     type: string
+    description: |-
+      The price per kilometer. Applicable if corresponding package is chosen.
+      The currency depends on the chosen currency in the accoutn of the user.
+    example: 1 EUR
   hourPrice:
     type: string
+    description: |-
+      The price per hour. Applicable if corresponding package is chosen.
+      The currency depends on the chosen currency in the accoutn of the user.
+    example: 10 EUR
   minutePrice:
     type: string
+    description: |-
+      The price per minute. Applicable if corresponding package is chosen.
+      The currency depends on the chosen currency in the accoutn of the user.
+    example: 0.5 EUR
   dayPrice:
+    description: |-
+      The price per day. Applicable if corresponding package is chosen.
+      The currency depends on the chosen currency in the accoutn of the user.
     type: string
-required:
-  - id
-  - pickupLocation
-  - availableCars
-  - startDate
-  - returnDate
-  - insurance
-  - finalServicePrice
+  package:
+    type: string
+    description: 'Selected package at booking time. Depending on it, the price calculation is done accordingly (per minute/hour/day). Package prices can be different depending on the car class. If there is no package selected default calculation is by minute.'
+    enum:
+      - perMiute
+      - perHour
+      - daily
+    example: daily

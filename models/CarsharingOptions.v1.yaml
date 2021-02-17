@@ -1,6 +1,6 @@
 title: AutopartageOptions
 type: object
-description: ''
+description: Additional options which can be included in the carsharing service.
 properties:
   id:
     type: string

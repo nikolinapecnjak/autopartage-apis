@@ -1,12 +1,9 @@
 title: AirportLocationOptions
 type: object
-description: ''
+description: Additional information about the location in case if it is airport. This information helps to determine the exact terminal where the car will be waiting for the user.
 properties:
   id:
     type: string
-  byPlaneArrival:
-    type: boolean
-    description: If true it means that user is arriving to the Airport by the plane. The figlht number or airline and departing city can help to determine the Terminal at which the user will pick up the car. Applicable only when the location type is Airport.
   flightNumber:
     type: string
     description: |-
@@ -25,3 +22,6 @@ properties:
   pickupTerminal:
     type: string
     description: Determines the Terminal at which the user wants to pick up the car. Applicable if byPlaneArrivale is false.
+  byPlaneArrival:
+    type: boolean
+    description: Determines if the user is arriving by plan to pick up the car for carsharing.In case if true additional properties can be set up in order to determine the terminal where the car will be waiting for the user.
