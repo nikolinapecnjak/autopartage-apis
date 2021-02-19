@@ -30,12 +30,7 @@ x-examples:
     carModel: Fiat
     fuelOrBatteryLevel: 70%
     numberOfSeats: '4'
-    isAutomatic: true
     isCabriolet: true
-    isElectric: true
-    isThermal: true
-    isHybrid: true
-    isHybridRechargeable: true
     description: 'Equiped with climatisation and snow tires. '
     fuelType: diesel
     fuelCardIncluded: true
@@ -53,6 +48,8 @@ x-examples:
     hourPrice: '10'
     minutePrice: '0.50'
     dayPrice: '100'
+    transmission: manual
+    energy: thermal
 properties:
   id:
     type: string

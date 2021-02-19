@@ -57,7 +57,7 @@ properties:
     format: float
     example: 1.5
   options:
-    $ref: ./AirportLocationOptions.v1.yaml
+    $ref: ./LocationOptions.v1.yaml
   xCoordinate:
     type: number
     format: double

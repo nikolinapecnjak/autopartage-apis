@@ -442,8 +442,6 @@ components:
           carModel: Fiat
           fuelOrBatteryLevel: 70%
           numberOfSeats: '4'
-          isCabriolet: true
-          isHybridRechargeable: true
           description: 'Equiped with climatisation and snow tires. '
           fuelType: diesel
           fuelCardIncluded: true
@@ -463,6 +461,7 @@ components:
           dayPrice: '100'
           transmission: manual
           energy: thermal
+          carType: all
       properties:
         id:
           type: string

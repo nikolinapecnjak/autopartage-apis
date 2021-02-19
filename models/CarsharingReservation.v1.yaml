@@ -152,7 +152,7 @@ properties:
     description: This field contains the total days usage of the Autopartage service. Applicable only if the package per days is previously chosen.
     example: '1'
     type: integer
-  totalServicePrice:
+  totalPrice:
     type: string
     example: '100'
     description: |-
