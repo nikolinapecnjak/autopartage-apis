@@ -149,12 +149,6 @@ paths:
           required: false
           schema:
             type: boolean
-        - name: contractCode
-          schema:
-            type: string
-            example: 123FGH453
-          in: query
-          description: Represents the code of autopartage reservation done through another service such as a Hotel provider.
         - schema:
             type: number
             format: double
