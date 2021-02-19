@@ -183,7 +183,9 @@ properties:
       The price per day. Applicable if corresponding package is chosen.
       The currency depends on the chosen currency in the accoutn of the user.
     example: '100'
-  transmissionType:
+  transmission:
+    type: string
+  energy:
     type: string
 required:
   - id
