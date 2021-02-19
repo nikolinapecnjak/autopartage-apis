@@ -82,24 +82,9 @@ properties:
       - '6'
       - '7'
     example: '4'
-  isAutomatic:
-    type: boolean
-    description: If true car is automatic.
   isCabriolet:
     type: boolean
     description: If true car is cabriolet.
-  isElectric:
-    type: boolean
-    description: If true car is electric.
-  isThermal:
-    type: boolean
-    description: If true car is thermal (bensin or diesel engine).
-  isHybrid:
-    type: boolean
-    description: If true car is hybrid.
-  isHybridRechargeable:
-    type: boolean
-    description: If true car is hybrid wit rechargeable battery.
   description:
     type: string
     description: |-
@@ -185,10 +170,17 @@ properties:
     example: '100'
   transmission:
     type: string
+    enum:
+      - automatic
+      - manual
+    example: manual
+    default: manual
   energy:
     type: string
-required:
-  - id
-  - carModel
-  - fuelOrBatteryLevel
-  - numberOfSeats
+    enum:
+      - electric
+      - thermal
+      - hybrid
+      - hybridrechargeable
+    example: thermal
+    default: thermal

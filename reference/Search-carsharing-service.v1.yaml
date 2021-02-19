@@ -97,36 +97,6 @@ paths:
             type: string
             example: A
           x-example: A
-        - name: isAutomatic
-          in: query
-          description: If true only automatic cars will be returned.
-          required: false
-          schema:
-            type: boolean
-        - name: isElectric
-          in: query
-          description: If true only electric cars will be returned.
-          required: false
-          schema:
-            type: boolean
-        - name: isThermal
-          in: query
-          description: If true only the cars with thermal engine will be returned.
-          required: false
-          schema:
-            type: boolean
-        - name: isisHybride
-          in: query
-          description: If true only the hybride cars will be returned.
-          required: false
-          schema:
-            type: boolean
-        - name: isHybridRechargeable
-          in: query
-          description: If true only the hybrid rechargeable cars will be returned.
-          required: false
-          schema:
-            type: boolean
         - name: numberOfSeats
           in: query
           description: If specified only the cars with selected number of seats will be returned.
@@ -149,12 +119,6 @@ paths:
           required: false
           schema:
             type: boolean
-        - name: contractCode
-          schema:
-            type: string
-            example: 123FGH453
-          in: query
-          description: Represents the code of autopartage reservation done through another service such as a Hotel provider.
         - schema:
             type: number
             format: double
@@ -189,7 +153,7 @@ paths:
             items:
               type: string
           in: query
-          description: 'List of fields to be returned. If omitted, all      available fields are returned. If specified, only the requested fields are returned.'
+          description: 'List of fields to be returned. If omitted, all available fields are returned. If specified, only the requested fields are returned.'
           style: pipeDelimited
         - schema:
             type: boolean
@@ -204,10 +168,29 @@ paths:
           description: Zipcode of the town where car is searched
         - schema:
             type: integer
-            example: '50'
+            example: 50
           in: query
           name: radius
           description: Radius from current location in which the cars will be searched. Unit is km.
+        - schema:
+            type: string
+            enum:
+              - automatic
+              - manual
+              - all
+          in: query
+          name: transmission
+          description: The type of transmission in the car.
+        - schema:
+            type: string
+            enum:
+              - hybrid
+              - hybridRechargeable
+              - thermal
+              - electric
+              - all
+          in: query
+          name: energy
       responses:
         '200':
           description: Available cars successfully retrieved.
@@ -509,12 +492,6 @@ components:
             - '6'
             - '7'
           example: '4'
-        isCabriolet:
-          type: boolean
-          description: If true car is cabriolet.
-        isHybridRechargeable:
-          type: boolean
-          description: If true car is hybrid wit rechargeable battery.
         description:
           type: string
           description: |-
@@ -527,7 +504,7 @@ components:
             - diesel
             - petrol
           example: diesel
-          description: Determines the type of fuel in case if car has a thermal engine. Not applicable if car does not have a thermal engine.
+          description: Determines the type of fuel in case if car has a thermal engine. This parameter is ignored if car does not have a thermal energy.
         fuelCardIncluded:
           type: boolean
           description: If true the company fuel card is available in the car for the purpose of tanking at the partner gas stations.
@@ -553,7 +530,7 @@ components:
         carClass:
           type: string
           description: |-
-            Determines the class of the car. Depends on the defined business model.
+            Determines the class of the car. Depends on the defined business model within the carsharing company.
             For example:
             S - small
             M - medium
@@ -615,6 +592,12 @@ components:
             - hybrid
             - hybridRechargeable
           example: thermal
+        carType:
+          type: string
+          description: Can be used to define the type of the car.
+          enum:
+            - all
+            - cabriolet
       required:
         - id
         - location
