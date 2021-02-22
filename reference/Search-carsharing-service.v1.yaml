@@ -16,12 +16,12 @@ paths:
         - autopartage
         - carsharing
       summary: Search cars available for carsharing according to the requester matching input parameters.
-      description: 'It returns the list of CarsharingService objects administered by the requester and matching the input parameters. The response does not contain all the detailed information of the retrived cars, but just a subset of properties. All the query parameters are case insensitive.'
+      description: 'It returns an array of CarsharingService objects matching the input parameters. The response does not contain all the detailed information of the retrived cars, but just a subset of properties. All the query parameters are case insensitive.'
       operationId: getCarsharingServices
       parameters:
         - name: language
           in: query
-          description: 'The language in which the content will be displayed, it is selected from the application. ISO 639-2 Code is used.'
+          description: The language in which the content will be displayed.It can be previously selected from the application. ISO 639-2 3-letter Code is used.
           required: false
           schema:
             type: string
@@ -29,7 +29,7 @@ paths:
             default: eng
         - name: currency
           in: query
-          description: 'The name of the currency in which the prices will be displayed, it is selected from the application. The official ISO 4217 standard which specifies three-letter ("Alpha-3") codes is used.'
+          description: The name of the currency in which the prices will be displayed. It can be previously selected from the application. The official ISO 4217 standard which specifies three-letter ("Alpha-3") codes is used.
           schema:
             type: string
             example: EUR
@@ -52,7 +52,7 @@ paths:
           x-example: Nice
         - name: fullAddress
           in: query
-          description: 'The address for the wished location of car pickup. It is needed to select also zipCode,city and country in order to uniquely identify the address. The available cars wil be searched in rayon of 10 kilometers by default. The value can be changed in radius parameter. '
+          description: 'The address for the wished location of car pickup. It is needed to select also zipCode,city and country in order to uniquely identify the address. '
           required: false
           schema:
             type: string
@@ -60,7 +60,7 @@ paths:
           x-example: '27 Albert Premier,06160 Antibes'
         - name: stationName
           in: query
-          description: 'The exact location name for the wished location of car pickup. It can be for example airport name, parking name or station name.'
+          description: 'The station name for the wished location of car pickup. It can be for example airport name, parking name or train station name.The station name needs to be one of the registered carsharing stations.'
           required: false
           schema:
             type: string
@@ -76,7 +76,7 @@ paths:
           x-example: '2017-07-21'
         - name: startDateTime
           in: query
-          description: 'The start date and time of the service following  RFC 3339 protocol conventions in following format: YYYY-MM-DDTHH:MM:SSZ. If omitted default value is current date-time at the time of the search. '
+          description: 'The start date and time of the service. The format is following  RFC 3339 protocol conventions: YYYY-MM-DDTHH:MM:SSZ.'
           schema:
             type: string
             format: date-time
@@ -91,7 +91,7 @@ paths:
           x-example: BMW
         - name: carClass
           in: query
-          description: This parameter can be used for filtering results depending on the selected car class. Car classes should be listed in enum field.
+          description: This parameter can be used for filtering results depending on the selected car class. Available car classes should be listed in enum field.
           required: false
           schema:
             type: string
@@ -104,9 +104,7 @@ paths:
           schema:
             type: integer
             enum:
-              - 1
               - 2
-              - 3
               - 4
               - 5
               - 6
@@ -125,28 +123,28 @@ paths:
             example: 43.575847
           in: query
           name: userXCoordinate
-          description: Applicable only if userCurrentLocation parameter is true. Represents the X coordinate of current user location.
+          description: Represents the X coordinate of current user location. Together with Y coordinate determines the location of the user.
         - schema:
             type: number
             format: double
             example: 7.120708
           in: query
           name: userYCoordinate
-          description: Applicable only if userCurrentLocation parameter is true. Represents the Y coordinate of current user location.
+          description: Represents the Y coordinate of current user location.Together with X coordinate determines the location of the user.
         - name: endDate
           schema:
             type: string
             example: '2021-07-22'
             format: date
           in: query
-          description: 'The end date of the service following  RFC 3339 protocol conventions in the following format: YYYY-MM-DD.'
+          description: 'The chosen end date of the carsharing service following  RFC 3339 protocol conventions in the following format: YYYY-MM-DD.'
         - name: endDateTime
           schema:
             type: string
             format: date-time
             example: '2021-07-22T17:32:28Z'
           in: query
-          description: 'The end date and time of the service following  RFC 3339 protocol conventions in following format: YYYY-MM-DDTHH:MM:SSZ.'
+          description: 'The chosen end date and time of the carsharing service. The format is following  RFC 3339 protocol conventions: YYYY-MM-DDTHH:MM:SSZ.'
         - name: fields
           schema:
             type: array
@@ -155,11 +153,6 @@ paths:
           in: query
           description: 'List of fields to be returned. If omitted, all available fields are returned. If specified, only the requested fields are returned.'
           style: pipeDelimited
-        - schema:
-            type: boolean
-          in: query
-          name: isManual
-          description: If true only cars with manual transmission will be returned.
         - schema:
             type: string
             example: '06160'
@@ -197,10 +190,12 @@ paths:
             type: string
           in: query
           name: startTime
+          description: 'The chosen start time of the carsharing service in the following format HH:MM:SS'
         - schema:
             type: string
           in: query
           name: endTime
+          description: 'The chosen end time of the carsharing service in the following format HH:MM:SS'
       responses:
         '200':
           description: Available cars successfully retrieved.
@@ -252,6 +247,7 @@ paths:
                       transmission: manual
                       energy: thermal
                       carType: all
+                      currencyCode: EUR
         '201':
           description: Created
         '204':
@@ -403,6 +399,13 @@ components:
           format: double
           description: y coordinate of the Location
           example: 7.120708
+      required:
+        - id
+        - country
+        - city
+        - zipCode
+        - fullAddress
+        - stationName
     DateTime:
       title: DateTime
       type: object
@@ -433,7 +436,7 @@ components:
       x-tags:
         - voiture
         - car
-      description: Car available for the rent through the carsharing service. Except required parameters it is mandatory to return one of the prices. It depends on the business model which parameter should be returned. It can be specified in the request 'fields' parameters which parameters should be returned.
+      description: 'Car available for the rent through the carsharing service. Except required parameters it is mandatory to return one of the prices. It depends on the business model which type of pricing is used and which parameter should be returned. It can be specified in the request ''fields'' parameters which parameters should be returned. It is possible to have daily pricing, hourly pricing, pricing per minute and pricing per kilometer.'
       x-examples:
         example-1:
           id: string
@@ -473,6 +476,7 @@ components:
           transmission: manual
           energy: thermal
           carType: all
+          currencyCode: EUR
       properties:
         id:
           type: string

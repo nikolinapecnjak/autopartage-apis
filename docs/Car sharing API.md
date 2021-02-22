@@ -41,7 +41,52 @@ startDateTime (or startDate+startTime) + endDateTime (or endDate+endTime) | 1 | 
 
  All other input parameters are optional.
 ### Output
-This api returns the array of Car objects matching the input parameters.
+This api returns an array of Car objects matching the input parameters.
+Car object represents the available for the rent through the carsharing service. Except required parameters it is mandatory to return one of the prices. It depends on the business model which type of pricing is used and which parameter should be returned. It can be specified in the request 'fields' parameters which parameters should be returned. It is possible to have daily pricing, hourly pricing, pricing per minute and pricing per kilometer.
 ### Error Codes
 
 ### Example
+
+```json
+{
+  "id": "string",
+  "location": {
+    "id": "string",
+    "country": "France",
+    "city": "Nice",
+    "zipCode": 6100,
+    "fullAddress": "1er Albert Premier",
+    "stationName": "Gare de Nice-Ville",
+    "description": "train station",
+    "isAirport": true,
+    "kmDistanceFromSelectedLocation": 1.5,
+    "xCoordinate": 43.575847,
+    "yCoordinate": 7.120708
+  },
+  "carBrand": "BMW",
+  "carModel": "Fiat",
+  "fuelOrBatteryLevel": "70%",
+  "numberOfSeats": "4",
+  "description": "Equiped with climatisation and snow tires. ",
+  "fuelType": "diesel",
+  "fuelCardIncluded": true,
+  "airConditioning": true,
+  "gps": true,
+  "snowTires": true,
+  "speedRegulator": true,
+  "halfAutonomyLevel": true,
+  "kilometersLeft": 1500,
+  "carClass": "S",
+  "platesNumber": "FW228GZ",
+  "carYear": 2017,
+  "kilometersPassed": 50000,
+  "kilometerPrice": "1",
+  "hourPrice": "10",
+  "minutePrice": "0.50",
+  "dayPrice": "100",
+  "transmission": "manual",
+  "energy": "thermal",
+  "carType": "all",
+  "currencyCode": "EUR"
+}
+```
