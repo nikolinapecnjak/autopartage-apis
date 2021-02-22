@@ -52,11 +52,11 @@ paths:
           x-example: Nice
         - name: fullAddress
           in: query
-          description: The full address for the wished location of car pickup.
+          description: 'The address for the wished location of car pickup. It is needed to select also zipCode,city and country in order to uniquely identify the address. The available cars wil be searched in rayon of 10 kilometers by default. The value can be changed in radius parameter. '
           required: false
           schema:
             type: string
-            example: 1er Albert Premier
+            example: 4 Rue Raoul Bosio
           x-example: '27 Albert Premier,06160 Antibes'
         - name: stationName
           in: query
@@ -169,9 +169,10 @@ paths:
         - schema:
             type: integer
             example: 50
+            default: 10
           in: query
           name: radius
-          description: Radius from current location in which the cars will be searched. Unit is km.
+          description: Radius from current location in which the cars will be searched. Unit is kilometers. This parameter is applicable if the search is done according to selected address or according to  user coordinates.
         - schema:
             type: string
             enum:
@@ -191,6 +192,7 @@ paths:
               - all
           in: query
           name: energy
+          description: The type of energy in the car.
       responses:
         '200':
           description: Available cars successfully retrieved.
@@ -222,12 +224,6 @@ paths:
                       carModel: Fiat
                       fuelOrBatteryLevel: 70%
                       numberOfSeats: '4'
-                      isAutomatic: true
-                      isCabriolet: true
-                      isElectric: true
-                      isThermal: true
-                      isHybrid: true
-                      isHybridRechargeable: true
                       description: 'Equiped with climatisation and snow tires. '
                       fuelType: diesel
                       fuelCardIncluded: true
@@ -245,6 +241,9 @@ paths:
                       hourPrice: '10'
                       minutePrice: '0.50'
                       dayPrice: '100'
+                      transmission: manual
+                      energy: thermal
+                      carType: all
         '201':
           description: Created
         '204':
@@ -411,11 +410,11 @@ components:
         date:
           type: string
           format: date
-          example: '2017-07-21'
+          example: '2021-07-21'
         dateTime:
           type: string
           format: date-time
-          example: '2017-07-21T17:32:28Z'
+          example: '2021-07-21T17:32:28Z'
     Car:
       title: Car
       type: object
