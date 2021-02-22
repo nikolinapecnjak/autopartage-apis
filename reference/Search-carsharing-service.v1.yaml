@@ -193,6 +193,14 @@ paths:
           in: query
           name: energy
           description: The type of energy in the car.
+        - schema:
+            type: string
+          in: query
+          name: startTime
+        - schema:
+            type: string
+          in: query
+          name: endTime
       responses:
         '200':
           description: Available cars successfully retrieved.
@@ -415,6 +423,10 @@ components:
           type: string
           format: date-time
           example: '2021-07-21T17:32:28Z'
+        time:
+          type: string
+          format: time
+          example: '17:32:28'
     Car:
       title: Car
       type: object
@@ -522,9 +534,10 @@ components:
           description: If true the car has half autonomy level.
           type: boolean
         kilometersLeft:
-          type: integer
+          type: number
           description: According to the percentage of fuel/battery it defines how much kilometers can be passed before charging/tanking.
           example: 1500
+          format: double
         carClass:
           type: string
           description: |-
@@ -547,33 +560,38 @@ components:
           description: The year of car production.
           example: 2017
         kilometersPassed:
-          type: integer
+          type: number
           description: The number of kilometers the car has passed by now.
           example: 50000
+          format: double
         kilometerPrice:
-          type: string
+          type: number
           description: |-
             The price per kilometer. Applicable if corresponding package is chosen.
             The currency depends on the chosen currency in the accoutn of the user.
           example: '1'
+          format: double
         hourPrice:
-          type: string
+          type: number
           description: |-
             The price per hour. Applicable if corresponding package is chosen.
             The currency depends on the chosen currency in the accoutn of the user.
           example: '10'
+          format: double
         minutePrice:
-          type: string
+          type: number
           description: |-
             The price per minute. Applicable if corresponding package is chosen.
             The currency depends on the chosen currency in the accoutn of the user.
           example: '0.50'
+          format: double
         dayPrice:
-          type: string
+          type: number
           description: |-
             The price per day. Applicable if corresponding package is chosen.
             The currency depends on the chosen currency in the accoutn of the user.
           example: '100'
+          format: double
         transmission:
           type: string
           description: The type of transmission in the car.
@@ -596,6 +614,13 @@ components:
           enum:
             - all
             - cabriolet
+        currencyCode:
+          type: string
+          description: |-
+            Currency in which the prices are displayed.
+            The official ISO 4217 standard which specifies three-letter ("Alpha-3") codes is used.
+          example: EUR
+          default: EUR
       required:
         - id
         - location

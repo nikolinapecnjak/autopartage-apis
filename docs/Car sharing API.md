@@ -34,14 +34,14 @@ Following table gives the visibility of correct input combinations for the Time 
 
 Fields combination | Priority | Description
 ---------|----------|---------
- startDateTime | 3 | Used for usecases where car is booked instantly at the time of the search or when the user wants to reserve the car at specific date and time.
-startDateTime + endDateTime | 1 | Used for usecases when car can be rented for specific number of days and the end date and time needs to be selected in advance.
+ startDateTime (or startDate+startTime) | 3 | Used for usecases where car is booked instantly at the time of the search or when the user wants to reserve the car at specific date and time.
+startDateTime (or startDate+startTime) + endDateTime (or endDate+endTime) | 1 | Used for usecases when car can be rented for specific number of days and the end date and time needs to be selected in advance.
 
- The correct input depends on the business model of the company.
+ The allowed input combinations depend on the business model of the company. Some input combinations wont be applicable for some models and they will be ignored, but the API gives the possibility since it is generic.
 
  All other input parameters are optional.
 ### Output
-This api returns the array of CarsharingService objects matching the input parameters. The response does not contain all the detailed information of the retrived cars, but just a subset of properties.
+This api returns the array of Car objects matching the input parameters.
 ### Error Codes
 
 ### Example
