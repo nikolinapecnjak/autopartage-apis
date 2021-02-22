@@ -1,3 +1,0 @@
-# GET-carsharingcars
-
-The beginning of an awesome article...
