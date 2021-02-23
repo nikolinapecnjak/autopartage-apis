@@ -15,7 +15,8 @@ This API returns the cars available for the carsharing service according to the 
 
 ### Input
 All the query parameters are case insensitive.
-In order to specify the request it is needed at least to uniquely specify the location and the start date/dateTime.
+In order to specify the request it is needed at least to uniquely specify the start location and the start date/dateTime.
+Depending on the business model of the carsharing service,endDateTime (or endDate+endTime) might also be required.
 
 Following table gives the visibility of correct input combinations for the Location listed with the priorities:
 
@@ -44,14 +45,23 @@ startDateTime (or startDate+startTime) + endDateTime (or endDate+endTime) | 1 | 
 This api returns an array of Car objects matching the input parameters.
 Car object represents the available for the rent through the carsharing service. Except required parameters it is mandatory to return one of the prices. It depends on the business model which type of pricing is used and which parameter should be returned. It can be specified in the request 'fields' parameters which parameters should be returned. It is possible to have daily pricing, hourly pricing, pricing per minute and pricing per kilometer.
 ### Error Codes
+If any of the optional input values fields is filled wrongly, that parameter is ignored or default value is applied if it exists.
 
-Error Code | Description | HTTP Code
+Error Code | Error Text | HTTP Code |DESCRIPTION
 ---------|----------|---------
- / | Invalid parameter specified. | 400
- / |You are missing the rights to perform this action. | 403
- / | No cars available near the selected location at the selected time. | 204
- / | Required parameter missing.Please specify the location. | 400
-  /| Required parameter missing.Please specify the date and the time. | 400
+ 001 | Invalid parameter specified. | 400
+ 002 |You are missing the rights to perform this action. | 403
+ 003 | No cars available near the selected location at the selected time. | 204
+ 004 | Invalid city.| 400 |  City is wrongly specified or does not exist in the selected country| 
+   005 |Invalid zipcode. | 400 |  Zipcode is wrongly specified or does not exist in the selected country| 
+   006 |Specified country does not exist.| 400 | Country is wrongly specified.| 
+   007 | Invalid address.| 400 |  Address is wrongly specified or does not exist in the selected town| 
+   008 | Invalid carsharing station. | 400 |Selected station does not exist.  | 
+  009 |Invalid date format.| 400 |startDate/endDate is wrongly specified | 
+ 010 | Invalid time format. | 400 | startTime/endTime/startDateTime or endDateTime is wrongly specified|
+ 011 | Invalid DateTime format. | 400 | startDateTime or endDateTime is wrongly specified| 
+ 012 |Required parameter missing.Please specify the location. | 400 |One of the required parameters needed to specify the location is missing | 
+ 013 |Required parameter missing.Please specify the date and the time.  | 400 | One of the required parameters needed to specify the date or time is missing.| 
 
 ### Example
 
