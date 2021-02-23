@@ -49,7 +49,8 @@ If any of the optional input values fields is filled wrongly, that parameter is 
 
 Error Code | Error Text | HTTP Code |DESCRIPTION
 ---------|----------|---------
- 001 | Invalid parameter specified. | 400
+ 001 | Invalid parameter specified. | 400 | Used for some unrequired input parameters which are wrongly specified.This applies only for the following parameters:
+
  002 |You are missing the rights to perform this action. | 403
  003 | No cars available near the selected location at the selected time. | 204
  004 | Invalid city.| 400 |  City is wrongly specified or does not exist in the selected country| 
@@ -62,6 +63,8 @@ Error Code | Error Text | HTTP Code |DESCRIPTION
  011 | Invalid DateTime format. | 400 | startDateTime or endDateTime is wrongly specified| 
  012 |Required parameter missing.Please specify the location. | 400 |One of the required parameters needed to specify the location is missing | 
  013 |Required parameter missing.Please specify the date and the time.  | 400 | One of the required parameters needed to specify the date or time is missing.| 
+ 014 |The date and the time can not be in the past.  | 400 | Date or time are specified in the past.| 
+ 015 |Invalid coordinates.  | 400 | User x and y coordinate are not following the format.| 
 
 ### Example
 
