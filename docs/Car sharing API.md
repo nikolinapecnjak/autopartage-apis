@@ -45,6 +45,13 @@ This api returns an array of Car objects matching the input parameters.
 Car object represents the available for the rent through the carsharing service. Except required parameters it is mandatory to return one of the prices. It depends on the business model which type of pricing is used and which parameter should be returned. It can be specified in the request 'fields' parameters which parameters should be returned. It is possible to have daily pricing, hourly pricing, pricing per minute and pricing per kilometer.
 ### Error Codes
 
+Error Code | Description | HTTP Code
+---------|----------|---------
+ / | Invalid parameter specified. | 400
+ / |You are missing the rights to perform this action. | 403
+ / | No cars available near the selected location at the selected time. | 204
+ / | Required parameter missing.Please specify the location. | 400
+  /| Required parameter missing.Please specify the date and the time. | 400
 
 ### Example
 

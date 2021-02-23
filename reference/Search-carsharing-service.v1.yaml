@@ -196,6 +196,14 @@ paths:
           in: query
           name: endTime
           description: 'The chosen end time of the carsharing service in the following format HH:MM:SS'
+        - schema:
+            type: string
+            example: cabriolet
+            enum:
+              - cabriolet
+          in: query
+          name: carType
+          description: Defines the specific type of the car such as cabriolet or van. It should be one of the listed enum values. If empty all car types are retrieved.
       responses:
         '200':
           description: Available cars successfully retrieved.
@@ -246,7 +254,7 @@ paths:
                       dayPrice: 100
                       transmission: manual
                       energy: thermal
-                      carType: ''
+
                       currencyCode: EUR
         '204':
           description: No Content.
@@ -615,6 +623,8 @@ components:
           description: Can be used to define the type of the car.
           enum:
             - cabriolet
+            - '""'
+          default: '""'
         currencyCode:
           type: string
           description: |-
