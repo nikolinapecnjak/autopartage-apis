@@ -219,17 +219,17 @@ paths:
                         fullAddress: 1er Albert Premier
                         stationName: Gare de Nice-Ville
                         description: train station
-                        isAirport: true
+                        isAirport: false
                         kmDistanceFromSelectedLocation: 1.5
                         xCoordinate: 43.575847
                         yCoordinate: 7.120708
                       carBrand: BMW
-                      carModel: Fiat
+                      carModel: BMW 5
                       fuelOrBatteryLevel: 70%
                       numberOfSeats: '4'
                       description: 'Equiped with climatisation and snow tires. '
                       fuelType: diesel
-                      fuelCardIncluded: true
+                      fuelCardIncluded: false
                       airConditioning: true
                       gps: true
                       snowTires: true
@@ -240,16 +240,14 @@ paths:
                       platesNumber: FW228GZ
                       carYear: 2017
                       kilometersPassed: 50000
-                      kilometerPrice: '1'
-                      hourPrice: '10'
-                      minutePrice: '0.50'
-                      dayPrice: '100'
+                      kilometerPrice: 1
+                      hourPrice: 10
+                      minutePrice: 0.5
+                      dayPrice: 100
                       transmission: manual
                       energy: thermal
-                      carType: all
+                      carType: ''
                       currencyCode: EUR
-        '201':
-          description: Created
         '204':
           description: No Content.
         '400':
@@ -453,7 +451,7 @@ components:
             xCoordinate: 43.575847
             yCoordinate: 7.120708
           carBrand: BMW
-          carModel: Fiat
+          carModel: BMW 5
           fuelOrBatteryLevel: 70%
           numberOfSeats: '4'
           description: 'Equiped with climatisation and snow tires. '
@@ -475,7 +473,7 @@ components:
           dayPrice: '100'
           transmission: manual
           energy: thermal
-          carType: all
+          carType: ''
           currencyCode: EUR
       properties:
         id:
@@ -489,7 +487,7 @@ components:
         carModel:
           type: string
           description: Car Model
-          example: Fiat
+          example: 'BMW 5 '
         fuelOrBatteryLevel:
           description: 'Depending on weather the car is electric or not, it represents the amount of available fuel or battery in percentage.'
           example: 70%
@@ -573,28 +571,28 @@ components:
           description: |-
             The price per kilometer. Applicable if corresponding package is chosen.
             The currency depends on the chosen currency in the accoutn of the user.
-          example: '1'
+          example: 1
           format: double
         hourPrice:
           type: number
           description: |-
             The price per hour. Applicable if corresponding package is chosen.
             The currency depends on the chosen currency in the accoutn of the user.
-          example: '10'
+          example: 10
           format: double
         minutePrice:
           type: number
           description: |-
             The price per minute. Applicable if corresponding package is chosen.
             The currency depends on the chosen currency in the accoutn of the user.
-          example: '0.50'
+          example: 0.5
           format: double
         dayPrice:
           type: number
           description: |-
             The price per day. Applicable if corresponding package is chosen.
             The currency depends on the chosen currency in the accoutn of the user.
-          example: '100'
+          example: 100
           format: double
         transmission:
           type: string
@@ -616,7 +614,6 @@ components:
           type: string
           description: Can be used to define the type of the car.
           enum:
-            - all
             - cabriolet
         currencyCode:
           type: string

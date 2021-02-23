@@ -7,10 +7,10 @@ For the moment following APIs are available:
 - Retrieve cars available for the carsharing
 This set of APIs is generic and can be used for different business models of carsharing services.
 ## General Data Model
-[Data Model]()
+
 
 ## GET /carsharing/cars
-[](assets/images/SearchCars-UseCases.png)
+
 This API returns the cars available for the carsharing service according to the requester matching input parameters.
 
 ### Input
@@ -45,6 +45,7 @@ This api returns an array of Car objects matching the input parameters.
 Car object represents the available for the rent through the carsharing service. Except required parameters it is mandatory to return one of the prices. It depends on the business model which type of pricing is used and which parameter should be returned. It can be specified in the request 'fields' parameters which parameters should be returned. It is possible to have daily pricing, hourly pricing, pricing per minute and pricing per kilometer.
 ### Error Codes
 
+
 ### Example
 
 ```json
@@ -64,7 +65,7 @@ Car object represents the available for the rent through the carsharing service.
     "yCoordinate": 7.120708
   },
   "carBrand": "BMW",
-  "carModel": "Fiat",
+  "carModel": "BMW 5",
   "fuelOrBatteryLevel": "70%",
   "numberOfSeats": "4",
   "description": "Equiped with climatisation and snow tires. ",
@@ -86,7 +87,7 @@ Car object represents the available for the rent through the carsharing service.
   "dayPrice": "100",
   "transmission": "manual",
   "energy": "thermal",
-  "carType": "all",
+  "carType": "",
   "currencyCode": "EUR"
 }
 ```
