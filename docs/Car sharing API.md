@@ -63,8 +63,9 @@ Error Code | Error Text | HTTP Code |DESCRIPTION
  012 |Required parameter missing.Please specify the location. | 400 |One of the required parameters needed to specify the location is missing | 
  013 |Required parameter missing.Please specify the date and the time.  | 400 | One of the required parameters needed to specify the date or time is missing.| 
  014 |The date and the time can not be in the past.  | 400 | Date or time are specified in the past.| 
- 015 |Invalid coordinates. | 400 | User x and y coordinate are not following the format.| 
+ 015 |Invalid user coordinates. | 400 | User x and y coordinate are not following the format.| 
 016|Invalid currency.|403
+017|Required parameter missing.Please specify at least the city or the stationName together with the country.|403
 
 ### Request Example
 
