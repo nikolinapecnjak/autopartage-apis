@@ -49,9 +49,9 @@ If any of the optional input values fields is filled wrongly, that parameter is 
 
 Error Code | Error Text | HTTP Code |DESCRIPTION
 ---------|----------|---------
-001|Invalid language.|403
- 002 |You are missing the rights to perform this action. | 403
- 003 | No cars available near the selected location at the selected time. | 204
+001|Invalid language.|403|Wrong language format is specified or specified language does not exist
+ 002 |You are missing the rights to perform this action. | 403|User has no rights to shoot the API.|
+ 003 | No cars available near the selected location at the selected time. | 204||
  004 | Invalid city.| 400 |  City is wrongly specified or does not exist in the selected country| 
    005 |Invalid zipcode. | 400 |  Zipcode is wrongly specified or does not exist in the selected country| 
    006 |Specified country does not exist.| 400 | Country is wrongly specified.| 
@@ -64,10 +64,9 @@ Error Code | Error Text | HTTP Code |DESCRIPTION
  013 |Required parameter missing.Please specify the date and the time.  | 400 | One of the required parameters needed to specify the date or time is missing.| 
  014 |The date and the time can not be in the past.  | 400 | Date or time are specified in the past.| 
  015 |Invalid user coordinates. | 400 | User x and y coordinate are not following the format.| 
-016|Invalid currency.|403
-017|Required parameter missing.Please specify at least the city or the stationName together with the country.|403
+016|Invalid currency.|403|Wrong currency format is specified or specified currency does not exist|
+017|Required parameter missing.Please specify at least the city or the stationName together with the country.|403|When only country is specified as a location.|
 
-### Request Example
 
 ### Response Example
 
