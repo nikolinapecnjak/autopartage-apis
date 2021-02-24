@@ -44,7 +44,7 @@ paths:
           x-example: France
         - name: city
           in: query
-          description: The city where the carsharing service is being searched.
+          description: The full name of the city where the carsharing service is being searched.
           required: false
           schema:
             type: string
@@ -123,14 +123,14 @@ paths:
             example: 43.575847
           in: query
           name: userXCoordinate
-          description: 'Represents the X coordinate of current user location. Together with Y coordinate determines the location of the user. The format is specified in decimal degrees format : DDD.DDDDD
+          description: Represents the X coordinate of current user location. Together with Y coordinate determines the location of the user. The format is specified in decimal degrees format (DDD.DDDDD) 
         - schema:
-            type: number
+            type: number 
             format: double
-            example: 7.120708
-          in: query
-          name: userYCoordinate
-          description: Represents the Y coordinate of current user location.Together with X coordinate determines the location of the user.The format is specified in decimal degrees format : DDD.DDDDD'
+            example: 7.120708 
+          in: query 
+          name: userYCoordinate 
+          description: Represents the Y coordinate of current user location.Together with X coordinate determines the location of the user.The format is specified in decimal degrees format (DDD.DDDDD) 
         - name: endDate
           schema:
             type: string
@@ -418,8 +418,9 @@ components:
       x-examples:
         example-1:
           id: string
-          date: '2017-07-21'
-          dateTime: '2017-07-21T17:32:28Z'
+          date: '2021-07-21'
+          dateTime: '2021-07-21T17:32:28Z'
+          time: '17:32:28'
       properties:
         id:
           type: string
