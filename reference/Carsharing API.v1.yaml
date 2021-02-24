@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Carsharing service (Autopartage)
+  title: Carsharing service - Search available cars
   version: '1.0'
   contact:
     email: nikolinapecnjak@gmail.com

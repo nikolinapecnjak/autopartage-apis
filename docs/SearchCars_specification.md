@@ -1,15 +1,17 @@
 # Carsharing API
 
-Carsharing is is a model of car rental where people rent cars for short periods of time, often by the hour or by minutes. There are also carsharing models which enable to rent a car for couple of days.
+Carsharing is is a model of car rental where people can rent cars for a short period of time, often measured by the hour or by minutes. There are also carsharing models which enable to rent a car for several days.
 This set of APIs covers different functionalities such as retrieving available cars, making a carsharing reservation,
 reviewing carsharing reservation details...
 For the moment following APIs are available:
 - Retrieve cars available for the carsharing
 This set of APIs is generic and can be used for different business models of carsharing services.
 ## General Data Model
-
+General Data Model can be found by name Data Model in images folder.
 
 ## GET /carsharing/cars
+
+Use Case UML Model can be found by name SearchCars-Useses in images folder.
 
 This API returns the cars available for the carsharing service according to the requester matching input parameters.
 
