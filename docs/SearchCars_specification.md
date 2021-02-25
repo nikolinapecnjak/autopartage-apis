@@ -47,7 +47,7 @@ startDateTime (or startDate+startTime) + endDateTime (or endDate+endTime) | 1 | 
  All other input parameters are optional.
 ### Output
 This api returns an array of Car objects matching the input parameters.
-Car object represents the available for the rent through the carsharing service. Except required parameters it is mandatory to return one of the prices. It depends on the business model which type of pricing is used and which parameter should be returned. It can be specified in the request 'fields' parameters which parameters should be returned. It is possible to have daily pricing, hourly pricing, pricing per minute and pricing per kilometer.
+Car object represents the available cars for the rent through the carsharing service. Except required parameters it is mandatory to return one of the prices. It depends on the business model which type of pricing is used and which parameter should be returned. It can be specified in the request 'fields' parameters which parameters should be returned. It is possible to have daily pricing, hourly pricing, pricing per minute and pricing per kilometer.
 ### Error Codes
 If any of the optional input values fields is filled wrongly, that parameter is ignored or default value is applied if it exists.
 
