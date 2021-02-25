@@ -1,7 +1,6 @@
 title: Car
 type: object
 x-tags:
-  - voiture
   - car
 description: Car being rented for the carsharing service.
 x-examples:
