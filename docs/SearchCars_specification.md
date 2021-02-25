@@ -7,13 +7,14 @@ For the moment following APIs are available:
 - Retrieve cars available for the carsharing
 This set of APIs is generic and can be used for different business models of carsharing services.
 ## General Data Model
-General Data Model can be found by name Data Model in images folder.
 
+![t](../assets/images/SearchCars-UseCases.png)
 ## GET /carsharing/cars
 
-Use Case UML Model can be found by name SearchCars-Useses in images folder.
-
 This API returns the cars available for the carsharing service according to the requester matching input parameters.
+
+Use Case UML Model
+![Workflow](../assets/images/DataModel.png)
 
 ### Input
 All the query parameters are case insensitive.
