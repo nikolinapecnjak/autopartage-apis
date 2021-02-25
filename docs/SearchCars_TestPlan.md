@@ -4,7 +4,7 @@
 Usecase | Test data |Expected result|Description|Actual result|automated (y/n)|comments
 ---------|----------|---------
 Invalid language or language format is specified in the input  | language="FRAccc" | error 001- Invalid language.| |||||
-User does not have the needed rights to shoot the API but he tries to do so|error 002 You are missing the rights to perform this action.| |||||
+User does not have the needed rights to shoot the API but he tries to do so||error 002 You are missing the rights to perform this action.| |||||
 User specifies loaction and start dateTime but there are no cars available.|country="France"&stationName="Nice Airport"&startDateTime="2021-07-21T17:32:28Z",|error 003 No cars available near the selected location at the selected time.| |||||
 User specifies city which does not exist in the selected country| country=  "France" &city ="Niceaa"  Nice|error 004 Invalid city. || |||
 Zipcode is wrongly specified or does not exist in the selected country|country="France" &city ="Nice"&zipCode="610000"|error 005 Invalid zipcode. ||||||
