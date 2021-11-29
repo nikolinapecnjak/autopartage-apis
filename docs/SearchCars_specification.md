@@ -1,6 +1,6 @@
 # Carsharing API
 
-Carsharing is is a model of car rental where people can rent cars for a short period of time, often measured by the hour or by minutes. There are also carsharing models which enable to rent a car for several days.
+Carsharing is a model of a car rental where people can rent cars for a short period of time, often measured by the hour or by minutes. There are also carsharing models which enable to rent a car for several days.
 This set of APIs covers different functionalities such as retrieving available cars, making a carsharing reservation,
 reviewing carsharing reservation details...
 For the moment following APIs are available:
